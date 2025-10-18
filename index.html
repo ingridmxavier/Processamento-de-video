@@ -1429,10 +1429,86 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
   </figcaption>
 </figure>
       
-      <h3>4. Resultados e Análises</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
-      <h3>5. Conclusões</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+    <h3>4. Resultados e Análises</h3>
+    
+    <h4>(2.a) Aplicação do Filtro Gaussiano</h4>
+    <p style="text-align:justify;">
+      Neste experimento, o programa foi modificado para aplicar um <b>filtro gaussiano</b> à imagem capturada pela webcam antes da conversão para o espaço de cores HSV.
+      Além disso, foi criada uma janela adicional exibindo lado a lado a imagem <b>não filtrada</b> e a <b>filtrada</b>. 
+      O filtro suavizou a imagem e reduziu ruídos visuais, resultando em uma detecção mais estável das cores.
+      Foram utilizados três objetos coloridos: <b>dourado</b>, <b>laranja</b> e <b>preto</b>. Após o filtro, as cores se apresentaram mais uniformes e menos sujeitas a variações de iluminação.
+    </p>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/Gravação de Tela 2025-10-18 193202.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela mostrando a aplicação do filtro Gaussiano.
+      </figcaption>
+    </figure>   
+    
+    <h4>(2.b) Detector de Bordas Canny</h4>
+    <p style="text-align:justify;">
+      O segundo experimento consistiu em aplicar o <b>detector Canny</b> sobre a imagem filtrada. 
+      O programa passou a exibir duas janelas: uma com a imagem filtrada e outra mostrando as bordas detectadas pelo método Canny. 
+      Utilizando os mesmos objetos (<b>dourado</b>, <b>laranja</b> e <b>preto</b>), foi possível observar que apenas seus contornos eram destacados, permitindo identificar suas formas com nitidez. 
+    </p>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/Gravação de tela de 2025-10-15 11-12-56.webm" type="video/webm">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela exibindo o programa após aplicação do detector Canny.
+      </figcaption>
+    </figure>   
+    
+    <h4>(2.c) Salvamento e Gravação de Imagens/Vídeos</h4>
+    <p style="text-align:justify;">
+      Nesta versão, o programa foi aprimorado para incluir as funções de salvar imagens (tecla [s]) e gravar vídeos (teclas [k] para iniciar e [h] para encerrar).
+    </p>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/Gravação de tela de 2025-10-15 11-28-11.webm" type="video/webm">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela mostrando o funcionamento das teclas [s], [k] e [h].
+      </figcaption>
+    </figure>   
+    
+    <h4>(3) Extração de Múltiplos Objetos Coloridos</h4>
+    <p style="text-align:justify;">
+      Neste exercício, o programa foi modificado para detectar e extrair mais de um objeto colorido simultaneamente.
+      Foram utilizados objetos com diferentes cores, e o sistema foi capaz de identificar e rastrear cada um de forma independente.
+      Durante o experimento, observou-se que os itens coloridos traçavam um caminho visível na tela, com cada cor destacada individualmente.
+    </p>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/Gravação de tela de 2025-10-15 11-33-04.webm" type="video/webm">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela demonstrando o rastreamento de objetos coloridos.
+      </figcaption>
+    </figure>   
+    
+    <h3>5. Conclusões</h3>
+    <p style="text-align:justify;">
+        As análises realizadas mostraram a evolução progressiva do sistema, desde a aplicação de filtros e detectores até o rastreamento de objetos coloridos. 
+        As faixas HSV definidas demonstraram ser eficazes para distinguir cores específicas sob diferentes condições de iluminação, e a conversão para RGB permitiu validar visualmente a precisão da detecção. 
+        As etapas implementadas evidenciam o uso das ferramentas do OpenCV e o impacto direto dos ajustes de parâmetros na qualidade dos resultados obtidos.
+    </p>
+
     </div>
     </div>
   </details>
