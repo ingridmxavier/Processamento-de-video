@@ -1430,11 +1430,12 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
 </figure>
       
     <h3>4. Resultados e Análises</h3>
-    
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
     <h4>Aplicação do Filtro Gaussiano</h4>
     <p style="text-align:justify;">
       <p style="text-align:justify;">
-        Neste experimento, o programa foi modificado para aplicar um <b>filtro gaussiano</b> à imagem capturada pela webcam antes da conversão para o espaço de cores HSV.
+        Neste experimento, o programa foi modificado para aplicar um <b>Filtro Gaussiano</b> à imagem capturada pela webcam antes da conversão para o espaço de cores HSV.
         Além disso, foi criada uma janela adicional exibindo lado a lado a imagem <b>não filtrada</b> e a <b>filtrada</b>. 
         O filtro suavizou a imagem e reduziu ruídos visuais, resultando em uma detecção mais estável das cores.
         Foram utilizados três objetos coloridos: dourado, laranja e preto.
@@ -1448,6 +1449,7 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
         Essas distorções de cor são comuns em ambientes com iluminação oscilante e demonstram a influência direta da luz e do ruído óptico sobre a estabilidade do modelo HSV.
       </p>
     </p>
+    </section>
     <figure>
       <div class="video-container">
         <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
@@ -1456,16 +1458,18 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
         </video>
       </div>
       <figcaption>
-        Gravação de tela mostrando a aplicação do filtro Gaussiano.
+        Gravação de tela mostrando a aplicação do Filtro Gaussiano.
       </figcaption>
     </figure>   
-    
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
     <h4>Detector de Bordas Canny</h4>
     <p style="text-align:justify;">
-      O segundo experimento consistiu em aplicar o <b>detector Canny</b> sobre a imagem filtrada. 
+      O segundo experimento consistiu em aplicar o <b>Detector Canny</b> sobre a imagem filtrada. 
       O programa passou a exibir duas janelas: uma com a imagem filtrada e outra mostrando as bordas detectadas pelo método Canny. 
       Utilizando os mesmos objetos (dourado, laranja e preto), foi possível observar que apenas seus contornos eram destacados, permitindo identificar suas formas com nitidez. 
     </p>
+    </section>
     <figure>
       <div class="video-container">
         <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
@@ -1474,14 +1478,16 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
         </video>
       </div>
       <figcaption>
-        Gravação de tela exibindo o programa após aplicação do detector Canny.
+        Gravação de tela exibindo o programa após aplicação do Detector Canny.
       </figcaption>
     </figure>   
-    
-    <h4>Salvamento e Gravação de Imagens/Vídeos</h4>
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Salvar e gravar Imagens/Vídeos</h4>
     <p style="text-align:justify;">
       Nesta versão, o programa foi aprimorado para incluir as funções de salvar imagens (tecla [s]) e gravar vídeos (teclas [k] para iniciar e [h] para encerrar).
     </p>
+    </section>
     <figure>
       <div class="video-container">
         <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
@@ -1497,30 +1503,20 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
     <figure style="max-width: 720px; margin: 16px auto; text-align: center;">
       <img src="imagens/captura_lab3c_20251015_112839.jpg"
            loading="lazy"
-           style="width:60%; height:auto; border-radius:8px; border:1px solid #ccc;">
+           style="width:70%; height:auto; border-radius:8px; border:1px solid #ccc;">
       <figcaption style="font:14px/1.4 Arial, sans-serif; color:#00000; margin-top:8px;">
         Imagem salva a partir da tecla [s]
       </figcaption>
     </figure>
 
-    <figure>
-      <div class="video-container">
-        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
-          <source src="imagens/video_lab3c_MJPG_20251015_112840.avi" type="video/avi">
-          Seu navegador não suporta a reprodução de vídeo.
-        </video>
-      </div>
-      <figcaption>
-        Gravação de tela a partir das teclas [k] e [h].
-      </figcaption>
-    </figure>
-    
-    <h4>Extração de Múltiplos Objetos Coloridos</h4>
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Extração de mais de um objeto colorido</h4>
     <p style="text-align:justify;">
       Neste exercício, o programa foi modificado para detectar e extrair mais de um objeto colorido simultaneamente.
       Foram utilizados objetos com diferentes cores, e o sistema foi capaz de identificar e rastrear cada um de forma independente.
       Durante o experimento, observou-se que os itens coloridos traçavam um caminho visível na tela, com cada cor destacada individualmente.
     </p>
+    </section>
     <figure>
       <div class="video-container">
         <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
