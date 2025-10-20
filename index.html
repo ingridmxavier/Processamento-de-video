@@ -1570,15 +1570,144 @@ Dentro dessa janela, aparece uma fotografia colorida do jogador de futebol Lione
     <summary>Relatório 4</summary>
     <header class="content">
       <p><strong>Integrantes:</strong> Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier</p>
-      <p><strong>Data:</strong> X/X/2025</p>
+      <p><strong>Data:</strong> 27/10/2025</p>
     </header>
     <div class="content">
       <h3>1. Introdução</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 2...</p>
+        <p style="text-align:justify;">Neste laboratório, estudamos as técnicas de processamento de imagens baseadas em histogramas e 
+    operações de limiarização (binarização), utilizando a biblioteca OpenCV em linguagem C++. 
+    O objetivo principal é compreender como a distribuição dos níveis de intensidade de uma imagem influencia sua qualidade visual 
+    e como métodos de equalização e limiarização podem ser empregados para realçar contrastes e extrair informações relevantes.</p>
+      
+
+    <p style="text-align:justify;">O histograma de uma imagem representa a distribuição estatística dos tons de cinza (ou de cores) presentes, 
+    sendo uma ferramenta fundamental na análise e no pré-processamento de imagens digitais. 
+    A equalização de histograma busca redistribuir esses níveis de intensidade de forma mais uniforme, 
+    aumentando o contraste global e evidenciando detalhes antes pouco visíveis. 
+    Essa técnica é amplamente utilizada em aplicações de visão computacional e reconhecimento de padrões, 
+    especialmente em condições de iluminação não uniforme.</p>
+
+
+    <p style="text-align:justify;">Complementarmente, a limiarização (thresholding) é uma operação que converte imagens em tons de cinza em imagens binárias, 
+    segmentando regiões de interesse com base em um valor de limiar. 
+    Essa técnica é essencial em tarefas de detecção de objetos, reconhecimento facial e inspeção industrial. 
+    Quando aplicada após a equalização de histograma, a limiarização tende a produzir resultados mais robustos, 
+    pois os níveis de intensidade estão melhor distribuídos.</p>
+
+  <p>Durante o experimento, foram desenvolvidos programas progressivos conforme o roteiro proposto:</p>
+  <ul>
+    <li>
+      <strong>Equalização de histograma</strong> em imagens individuais convertidas para tons de cinza, 
+      com salvamento dos histogramas antes e depois da equalização.
+    </li>
+    <li>
+      <strong>Equalização em tempo real</strong> utilizando a webcam, exibindo simultaneamente a imagem em cinza e a equalizada.
+    </li>
+    <li>
+      <strong>Limiarização e binarização</strong> aplicadas após a equalização, para avaliar o impacto dessa etapa 
+      na qualidade da segmentação.
+    </li>
+    <li>
+      <strong>Equalização em imagens coloridas</strong>, aplicando o processo separadamente em cada canal (B, G, R) 
+      e analisando o efeito visual e estatístico sobre o histograma resultante.
+    </li>
+  </ul>
+
+  <p>
+    Esses experimentos possibilitam compreender o papel da equalização e da limiarização no realce e na segmentação de imagens, 
+    fornecendo uma base sólida para aplicações mais complexas de processamento e análise visual.
+  </p>
+    
       <h3>2. Fundamentos Básicos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;"> Os histogramas são representações gráficas da distribuição de intensidade dos pixels de uma imagem.
+    No caso de imagens em tons de cinza, o eixo horizontal representa os níveis de intensidade (de 0 a 255),
+    enquanto o eixo vertical indica a frequência com que cada nível ocorre. 
+    Assim, o histograma permite identificar se uma imagem está muito escura (valores concentrados à esquerda),
+    muito clara (valores concentrados à direita) ou com baixo contraste (valores concentrados em uma faixa estreita).</p>
+    
+   <p style="text-align:justify;">  A equalização de histograma é uma técnica de realce de contraste que visa redistribuir de forma mais uniforme 
+    os níveis de intensidade dos pixels, expandindo a faixa tonal da imagem. 
+    Isso é feito ajustando a <em>função de distribuição acumulada</em> (CDF) do histograma, 
+    de modo que os valores de intensidade sejam mapeados para um intervalo mais amplo, 
+    realçando detalhes em regiões claras e escuras. 
+    Em OpenCV, essa operação pode ser realizada com a função <code>equalizeHist()</code>. </p>
+
+     <p style="text-align:justify;">Em imagens coloridas, a equalização pode ser aplicada separadamente a cada canal de cor (B, G, R), 
+    ou sobre o canal de luminância em um espaço de cor como YCrCb ou HSV. 
+    No entanto, equalizar cada canal RGB de forma independente pode causar distorções cromáticas perceptíveis, 
+    sendo mais indicado equalizar apenas o componente de brilho. </p>
+
+     <p style="text-align:justify;">A limiarização</strong> (ou <em>thresholding</em>) é um método de <em>segmentação de imagem</em> que converte pixels em tons de cinza 
+    em apenas dois níveis: preto (0) e branco (255), com base em um valor de limiar (<em>threshold</em>) definido pelo usuário ou calculado automaticamente. 
+    Em OpenCV, a função <code>threshold()</code> oferece diversos modos, como: </p>
+
+  <ul>
+    <li><strong>THRESH_BINARY:</strong> pixels acima do limiar tornam-se brancos; abaixo, pretos.</li>
+    <li><strong>THRESH_BINARY_INV:</strong> inversão da binarização tradicional.</li>
+    <li><strong>THRESH_TRUNC:</strong> valores acima do limiar são truncados para o valor do limiar.</li>
+    <li><strong>THRESH_TOZERO:</strong> valores abaixo do limiar tornam-se zero.</li>
+    <li><strong>THRESH_OTSU:</strong> método automático que determina o limiar ótimo com base na minimização da variância intra-classe.</li>
+  </ul>
+
+  <p>
+    Quando a limiarização é precedida pela equalização de histograma, os níveis de intensidade ficam mais bem distribuídos, 
+    facilitando a separação entre regiões claras e escuras e resultando em uma binarização mais eficiente e menos sensível 
+    às variações de iluminação.
+  </p>
+
+  <p>
+    Em resumo, a combinação das técnicas de equalização e limiarização fornece uma poderosa abordagem 
+    para o pré-processamento de imagens, melhorando a visibilidade de detalhes e preparando os dados para etapas 
+    subsequentes de análise, como detecção de bordas, reconhecimento de padrões e segmentação de objetos.
+  </p>  
+    
       <h3>3. Materiais e Métodos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+     <p style="text-align:justify;">
+Para a realização do laboratório foram utilizados recursos de hardware e software necessários para o processamento e análise de imagens em tempo real. 
+O ambiente de desenvolvimento adotado foi o Visual Studio Code, com a linguagem C++ e a biblioteca OpenCV (versão 4.x)</strong>, 
+amplamente empregada em aplicações de visão computacional. Em alguns experimentos, também foi utilizada a webcam do computador para captura de imagens em tempo real.
+</p>
+
+<p style="text-align:justify;">
+As principais funções do OpenCV utilizadas foram:
+</p>
+
+<ul style="text-align:justify;">
+  <li><code>imread()</code> e <code>imshow()</code> para leitura e exibição das imagens;</li>
+  <li><code>cvtColor()</code> para conversão de imagem colorida para tons de cinza;</li>
+  <li><code>calcHist()</code> para cálculo do histograma;</li>
+  <li><code>equalizeHist()</code> para equalização de histograma em imagens em tons de cinza;</li>
+  <li><code>split()</code> e <code>merge()</code> para separar e recombinar os canais de cor (B, G, R);</li>
+  <li><code>threshold()</code> para aplicar a limiarização;</li>
+  <li><code>imwrite()</code> para salvar as imagens processadas;</li>
+  <li><code>waitKey()</code> para controle de execução e captura de tecla.</li>
+</ul>
+
+<p style="text-align:justify;">
+As imagens utilizadas foram fotos individuais dos integrantes do grupo e objetos coloridos, capturadas tanto a partir de arquivos quanto diretamente pela câmera. 
+O processamento foi realizado em quatro etapas principais, conforme o roteiro experimental:
+</p>
+
+<ol style="text-align:justify;">
+  <li><strong>Equalização em tons de cinza:</strong> conversão da imagem original para escala de cinza, cálculo do histograma e aplicação da equalização para realce de contraste.</li>
+  <li><strong>Equalização em tempo real:</strong> aplicação da equalização de histograma sobre o fluxo contínuo da webcam, exibindo simultaneamente a imagem em cinza e a equalizada.</li>
+  <li><strong>Limiarização (binarização):</strong> inserção de um valor de limiar fixo ou calculado automaticamente (método de Otsu) após a equalização, gerando uma imagem binária para segmentação.</li>
+  <li><strong>Equalização em imagens coloridas:</strong> equalização aplicada separadamente nos três canais de cor (B, G, R), com posterior recombinação e comparação visual com a imagem original.</li>
+</ol>
+
+<p style="text-align:justify;">
+Durante todo o processo, foram geradas e salvas as imagens intermediárias (original, equalizada, binarizada) e os gráficos de histograma correspondentes. 
+Os resultados obtidos em cada etapa permitiram comparar o efeito da equalização e da limiarização, tanto em imagens estáticas quanto dinâmicas, 
+avaliando a melhoria de contraste, a nitidez dos contornos e a eficiência da segmentação.
+</p>
+
+
+      
+      
+      
+      
+      
+      
       <h3>4. Resultados e Análises</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
       <h3>5. Conclusões</h3>
