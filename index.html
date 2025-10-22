@@ -1740,15 +1740,75 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.
     <summary>Relatório 5</summary>
     <header class="content">
       <p><strong>Integrantes:</strong> Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier</p>
-      <p><strong>Data:</strong> X/X/2025</p>
+      <p><strong>Data:</strong> 29/10/2025</p>
     </header>
     <div class="content">
       <h3>1. Introdução</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 2...</p>
+      <p style="text-align:justify;">O presente laboratório tem como objetivo estudar e implementar técnicas de subtração de fundo e detecção de movimento utilizando a biblioteca OpenCV em C++. A subtração de fundo é uma das etapas fundamentais em sistemas de visão computacional, permitindo identificar objetos em movimento dentro de uma cena estática. Essa técnica baseia-se na comparação entre um modelo de fundo previamente aprendido e os quadros atuais do vídeo, destacando as regiões que sofrem alterações — geralmente correspondentes a pessoas, veículos ou objetos em deslocamento.</p>
+
+<p style="text-align:justify;">Inicialmente, é proposto o estudo do tutorial oficial do OpenCV “How to Use Background Subtraction Methods”, bem como a execução do código de exemplo bg_sub.cpp com o vídeo vtest.avi, utilizando os modos MOG2 e KNN. A partir dessa base, foram desenvolvidos dois experimentos práticos: no primeiro, um programa realiza a subtração de fundo sobre vídeos gravados em aula, contendo movimentos lentos e rápidos, gerando uma saída que exibe apenas os elementos móveis e grava o resultado em arquivo. No segundo experimento, o código é adaptado para leitura direta da webcam, exibindo simultaneamente a imagem original e a imagem processada em tempo real, permitindo observar o desempenho da técnica com pessoas e objetos coloridos.</p>
+
+<p style="text-align:justify;">Por fim, o laboratório propõe uma breve pesquisa sobre aplicações práticas dessas técnicas em áreas como vigilância, transporte, automação e interação humano-computador, além de uma leitura complementar sobre rastreamento de objetos baseado em aprendizado profundo (GOTURN). Com isso, busca-se compreender tanto os fundamentos teóricos quanto as aplicações reais da subtração de fundo e da detecção de movimento em sistemas inteligentes de visão computacional.</p>
+
       <h3>2. Fundamentos Básicos</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      
+       <p style="text-align:justify;"> A subtração de fundo é uma técnica essencial em visão computacional para detectar
+      regiões em movimento em sequências de vídeo. O princípio é comparar cada novo
+      quadro (frame) com um modelo de fundo (a cena estática). Diferenças
+      significativas entre o frame atual e o modelo são classificadas como primeiro plano
+      (objetos em movimento), gerando uma máscara binária que separa
+      foreground e background. </p>
+     <p style="text-align:justify;">O desempenho pode ser afetado por ruído, variações de iluminação,sombras e
+      fundo dinâmico (por exemplo, árvores ao vento). Por isso, adotam-se modelos que
+     se adaptam no tempo, atualizando continuamente o fundo.</p>
+
+    <h2>Modelos no OpenCV</h2>
+    <ul>
+      <li>
+        <strong>MOG2 (Mixture of Gaussians 2)</strong>: modela cada pixel como mistura de gaussianas.
+        É robusto a mudanças suaves de iluminação e pode <strong>rotular sombras</strong> na máscara (valores intermediários).
+      </li>
+      <li>
+        <strong>KNN (K-Nearest Neighbors)</strong>: usa uma janela temporal de amostras recentes para
+        classificar o pixel como fundo ou primeiro plano. Adapta-se rapidamente a mudanças bruscas
+        e funciona bem com <strong>fundos dinâmicos</strong>.
+      </li>
+    </ul>
+
+    <h2>Pós-processamento</h2>
+     <p style="text-align:justify;"> Após obter a máscara, aplicam-se operações morfológicas(abertura/fechamento) e
+     limiarização para remover ruído e refinar contornos. Em seguida, a máscara pode ser
+      sobreposta ao vídeo para visualizar apenas as áreas móveis ou alimentar etapas como
+      rastreamento, contagem de objetos/pessoas e análise de padrões.
+    </p>
+
+     <p style="text-align:justify;">Essas técnicas são base de aplicações em <strong>vigilância inteligente</strong>, <strong>controle de tráfego</strong>,
+      <strong>automação industrial</strong> e <strong>interação humano-computador</strong>, possibilitando monitoramento
+      e decisões em tempo real. </p>
+      
       <h3>3. Materiais e Métodos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">Para o desenvolvimento deste laboratório, foi utilizada a linguagem C++ com a biblioteca OpenCV 4.x, além de vídeos de teste e imagens capturadas por webcam. O estudo teórico foi baseado no tutorial oficial do OpenCV “How to Use Background Subtraction Methods”, que apresenta o funcionamento dos algoritmos MOG2 e KNN, amplamente usados em aplicações de detecção de movimento.</p>
+      
+
+ <p style="text-align:justify;">Inicialmente, foi criada a pasta lab5, contendo o código de exemplo bg_sub.cpp e o vídeo de teste vtest.avi, disponibilizados no repositório oficial do OpenCV. O programa foi compilado e executado nos modos MOG2 e KNN, permitindo observar as diferenças entre os dois métodos de subtração de fundo e compreender o comportamento de cada um frente a diferentes tipos de movimento e iluminação.</p>
+
+<p style="text-align:justify;">Com base nesse estudo, foi desenvolvido um programa próprio em C++ capaz de ler vídeos gravados em aula, aplicar a subtração de fundo e exibir apenas os elementos em movimento. O sistema também grava automaticamente o vídeo processado, destacando o primeiro plano. Em seguida, o código foi modificado para funcionar com a webcam, exibindo em tempo real duas janelas: a imagem original e a imagem resultante do processamento. Durante os testes, foram realizados experimentos com pessoas e com objetos coloridos, observando o comportamento do algoritmo em movimentos lentos e rápidos.</p>
+
+<p style="text-align:justify;">Durante o processamento, foram aplicadas técnicas de limiarização e operações morfológicas (abertura e fechamento) para reduzir ruídos e melhorar a qualidade da máscara de movimento. Os parâmetros learningRate, varThreshold e history foram ajustados empiricamente para equilibrar a sensibilidade da detecção e a estabilidade do modelo de fundo.</p>
+
+<p style="text-align:justify;">Por fim, foram comparados os resultados obtidos com os métodos MOG2 e KNN, analisando sua eficiência, estabilidade e adaptação ao fundo. As observações foram registradas em vídeos e imagens, permitindo avaliar o desempenho de cada abordagem em diferentes condições de movimento e iluminação.</p>
+
+   <h3>Diagrama de blocos</h3>
+   <figure style="max-width: 1100px; margin: 24px auto; text-align: center;">
+  <img src="imagens/diagrama4.png"
+       loading="lazy"
+       style="width:100%; height:auto; border-radius:12px; border:2px solid #aaa; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  <figcaption style="font:15px/1.5 Arial, sans-serif; color:#333; margin-top:10px;">
+    Diagrama de blocos de subtração de fundo e detecção de movimento no OpenCV.
+  </figcaption>
+</figure>
+      
       
       <h3>4. Resultados e Análises</h3>
       <p style="text-align:justify;"><strong>(1)</strog> Desenvolva um programa em cpp baseado na subtração de fundo do item (a) para fazer a leitura de seu video gravado em aula anterior. Utilize os videos com movimento lento e com movimento rápido.O programa deve realizar a subtração de fundo e mostrar apenas os elemento em movimento. 
