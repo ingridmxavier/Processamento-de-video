@@ -1912,21 +1912,90 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
       
       
       <h3>4. Resultados e Análises</h3>
-      <p style="text-align:justify;"><strong>(1)</strong> Desenvolva um programa em cpp baseado na subtração de fundo do item (a) para fazer a leitura de seu video gravado em aula anterior. Utilize os videos com movimento lento e com movimento rápido.O programa deve realizar a subtração de fundo e mostrar apenas os elemento em movimento. 
-Deve ainda fazer a gravação do video de saída.
-</p>
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Vídeos com movimento lento e com movimento rápido</h4>
+    <p style="text-align:justify;">
+      Durante o experimento, observou-se que o algoritmo apresentou boa capacidade de detecção dos objetos em movimento, mesmo em cenários com variação de iluminação.
+      O modelo de fundo foi atualizado gradualmente, permitindo distinguir de forma consistente as regiões em movimento. No vídeo com movimento lento, a detecção mostrou-se estável e precisa, 
+      sendo possível visualizar claramente o rastro contínuo do objeto, que indicava sua trajetória ao longo do tempo. Já no vídeo com movimento rápido, embora a detecção tenha apresentado 
+      menor nível de detalhamento, devido à velocidade, ainda foi possível identificar de forma nítida a presença e o deslocamento do objeto, comprovando a eficiência do método utilizado.
+    </p>
+    </section>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/saida_subtracao.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela mostrando o resultado com vídeo lento.
+      </figcaption>
+    </figure>
       
-       <p style="text-align:justify;"><strong>(2)</strong>  Elabore outro programa em cpp modificando o item (1), agora fazendo a leitura de imagem da webcam. 
-Neste caso, o programa deve mostrar uma janela ao vivo com a imagem original e a imagem resultante. Neste caso, realize este experimento com cada integrante do grupo e com um objeto colorido. Salve trechos de video destes experimentos e analise os resultados.</p>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/saida_subtracao (1).mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela mostrando o resultado com vídeo rápido.
+      </figcaption>
+    </figure>
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Leitura de imagem da webcam</h4>
+    <p style="text-align:justify;">
+      No segundo experimento, o programa apresentou um comportamento semelhante ao anterior.
+      A principal dificuldade observada foi a variação de iluminação do ambiente, que interferiu 
+      na atualização do modelo de fundo, causando pequenas áreas borradas, indicando falsa detecção de movimento em certos momentos.
+    </p>
+    </section>
+    <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/saida_lab5_2.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Gravação de tela exibindo movimentos dos integrantes do grupo e do objeto colorido.
+      </figcaption>
+    </figure>
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Aplicação prática com subtração de fundo:</h4>
+    <p style="text-align:justify;">
+      No contexto do projeto RoadWatch, essas técnicas são fundamentais para o reconhecimento de ações do motorista.
+      A subtração de fundo permite isolar os elementos em movimento dentro do veículo, como as mãos e o celular, enquanto 
+      a detecção de movimento possibilita identificar quando o motorista realiza ações suspeitas, como pegar o telefone durante a condução. 
+      Um experimento prático consiste em capturar, por meio da webcam, imagens do motorista durante a simulação de direção. 
+      O sistema realiza a subtração de fundo para remover o cenário fixo e destaca apenas os movimentos das mãos e do celular.
+      Quando o algoritmo identifica um movimento incompatível com a direção segura, o sistema emite um alerta visual ou sonoro indicando o uso indevido do aparelho.
+      Esse tipo de aplicação demonstra como a subtração de fundo e a detecção de movimento podem ser integradas a sistemas de segurança veicular, 
+      contribuindo para a redução de acidentes causados por distrações e promovendo uma condução mais segura e responsável.
+    </p>
+    </section>  
+    
+    <h3>5. Conclusões</h3>
+     <p style="text-align:justify;">
+        Este relatório sobre Subtração de Fundo e Detecção de Movimento permitiu compreender na prática o funcionamento de algoritmos fundamentais 
+        do processamento de vídeo. Nos vídeos com movimento lento, a detecção foi mais detalhada, permitindo observar claramente o trajeto do objeto. 
+        Já nos vídeos com movimento rápido, embora o detalhamento tenha diminuído, o sistema ainda conseguiu reconhecer o deslocamento, demonstrando sua eficiência 
+        mesmo em situações com variação de iluminação e velocidade. Nos testes com a webcam, a técnica se mostrou sensível às variações de luz, mas eficaz na detecção 
+        dos elementos não estáticos, como as mãos e objetos coloridos em movimento.
+      </p>
       
-       <p style="text-align:justify;"><strong>(3)</strong> Para pesquisar e relatar:  que aplicações práticas podem ser realizadas com técnicas de subtração de fundo e de detecção de movimento? (Cite exemplos e apresente um experimento. Este pode ser do proprio projeto da disciplina.)</p>
-       <p style="text-align:justify;">As técnicas de subtração de fundo e detecção de movimento permitem identificar automaticamente objetos móveis em uma cena ao comparar cada novo quadro com um modelo de fundo. São amplamente usadas em vigilância, monitoramento de tráfego, interação humano-computador, robótica e automação industrial, pois destacam o que muda em relação ao cenário estático. </p>
-<p style="text-align:justify;">No projeto RoadWatch, essas técnicas foram aplicadas para detectar distrações do motorista. O experimento consistiu em gravar vídeos do motorista parado e realizando movimentos lentos e rápidos, aplicando os métodos MOG2 e KNN para identificar regiões em movimento, como cabeça e mãos. Observou-se que o MOG2 funciona melhor para movimentos lentos e mudanças suaves de luz, enquanto o KNN responde melhor a movimentos rápidos e fundos dinâmicos. </p>
-<p style="text-align:justify;">Ajustes nos parâmetros, como `learningRate` e `varThreshold`, são essenciais para equilibrar sensibilidade e estabilidade. No geral, a subtração de fundo mostrou-se uma ferramenta eficaz para monitoramento em tempo real, podendo ser usada tanto em segurança e transporte quanto em sistemas inteligentes como o RoadWatch.
- </p>
-      
-      <h3>5. Conclusões</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">
+        Esses resultados evidenciam a importância da subtração de fundo como etapa inicial de análise de comportamento e reconhecimento de ações.
+        No contexto do projeto RoadWatch, essa técnica desempenha um papel fundamental na identificação do uso de celular durante a direção, uma vez 
+        que permite isolar e acompanhar o movimento das mãos e do dispositivo, destacando ações que desviam a atenção do motorista.
+        Assim, conclui-se que as técnicas de subtração de fundo e detecção de movimento são ferramentas essenciais, com aplicações que vão desde sistemas 
+        de monitoramento e segurança até soluções inteligentes de transporte.
+      </p>
     </div>
     </div>
   </details>
