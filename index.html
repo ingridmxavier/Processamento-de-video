@@ -2004,19 +2004,55 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
     <summary>Relatório 6</summary>
     <header class="content">
       <p><strong>Integrantes:</strong> Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier</p>
-      <p><strong>Data:</strong> X/X/2025</p>
+      <p><strong>Data:</strong> 05/11/2025</p>
     </header>
     <div class="content">
       <h3>1. Introdução</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 2...</p>
+      <p style="text-align:justify;"> Nesta aula, foi estudado o conceito de features (características locais) em imagens, com foco na detecção de pontos de interesse utilizando diferentes métodos implementados na biblioteca OpenCV. Em visão computacional, features são elementos que se destacam em uma imagem, como cantos, bordas ou regiões com variação significativa de intensidade, e que podem ser reconhecidos novamente em outras imagens ou quadros de um vídeo. Esses pontos são fundamentais porque permanecem estáveis mesmo quando há mudanças de iluminação, rotação, escala ou perspectiva, tornando-se essenciais em aplicações como rastreamento de movimento, reconstrução tridimensional, calibração de câmeras e reconhecimento de padrões.</p>
+
+<p style="text-align:justify;"> Durante o estudo teórico, foi analisado o material “Understanding Features”, que apresenta a importância desses pontos de interesse e como eles são usados para descrever e compreender o conteúdo de uma cena. No laboratório, foram aplicados os métodos clássicos de detecção, como o Shi–Tomasi Corner Detector e o Good Features to Track, além de outros detectores de features disponíveis no OpenCV. Inicialmente, foi desenvolvido um programa em C++ para leitura de imagens estáticas — tanto das capturas feitas anteriormente quanto das imagens utilizadas no projeto de vídeo — realizando a detecção e a marcação das features identificadas, com posterior salvamento dos resultados em arquivo.</p>
+
+<p style="text-align:justify;"> Em seguida, o experimento foi ampliado para o ambiente dinâmico, com a implementação de um segundo programa em C++ capaz de capturar imagens em tempo real pela webcam. Esse programa exibe, simultaneamente, a imagem original e a imagem processada com as features destacadas, permitindo observar o funcionamento do algoritmo em diferentes condições. Foram realizadas filmagens tanto com os integrantes do grupo quanto com um tabuleiro de xadrez preto e branco, pois esse padrão geométrico contém muitos cantos bem definidos e é amplamente utilizado para testes e calibração de câmeras.</p>
+
+<p style="text-align:justify;"> Por fim, foram discutidas aplicações práticas das técnicas de detecção de features e cantos, que incluem desde o rastreamento de objetos e reconhecimento facial até a reconstrução 3D e o mapeamento de ambientes para robôs autônomos. Assim, a Aula 6 proporcionou uma compreensão sólida sobre como detectar, visualizar e aplicar features em imagens e vídeos, consolidando a base teórica e prática para o desenvolvimento de sistemas de visão computacional.</p>
+
+      
       <h3>2. Fundamentos Básicos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">As features, ou características locais, representam informações relevantes extraídas de uma imagem que permitem identificar e comparar regiões específicas entre diferentes imagens ou quadros de um vídeo. Em visão computacional, elas correspondem a pontos de interesse, bordas, cantos ou regiões únicas que se destacam em relação ao restante da cena, funcionando como elementos fundamentais para reconhecer, rastrear e descrever objetos. Essas características são especialmente úteis porque tendem a se manter estáveis mesmo quando há variações de iluminação, rotação, escala ou perspectiva, tornando-se essenciais em aplicações como reconhecimento de padrões, alinhamento de imagens, reconstrução tridimensional, rastreamento de movimento e detecção de objetos.</p>
+
+<p style="text-align:justify;">Entre os principais tipos de features destacam-se os cantos (corners), as bordas (edges) e os blobs. Os cantos são regiões onde há grande variação de intensidade em duas direções, como nas interseções de linhas ou padrões geométricos — por exemplo, em um tabuleiro de xadrez. As bordas correspondem aos limites entre regiões com intensidades diferentes, sendo úteis na segmentação e no contorno de objetos. Já os blobs representam regiões que se sobressaem pela textura ou forma, sendo detectados por métodos como DoG (Difference of Gaussians) e LoG (Laplacian of Gaussian).</p>
+
+<p style="text-align:justify;">Entre os algoritmos clássicos de detecção de cantos, destacam-se o Harris Corner Detector e o Shi–Tomasi (Good Features to Track). O método de Harris identifica pontos de variação significativa de intensidade em múltiplas direções, marcando regiões com alto contraste. Já o Shi–Tomasi é uma versão aprimorada do método de Harris, que seleciona apenas os cantos mais confiáveis, ideais para rastreamento entre quadros consecutivos de vídeo. Esses detectores são amplamente empregados em tarefas de rastreamento de movimento, calibração de câmeras e reconstrução de cenas.</p>
+
+<p style="text-align:justify;">Após detectar os pontos de interesse, é possível extrair descritores, que são vetores numéricos capazes de representar matematicamente a vizinhança de cada feature. Esses descritores permitem comparar e identificar correspondências entre features de imagens distintas, sendo a base para técnicas como o emparelhamento de pontos e a fusão de imagens.</p>
+
+<p style="text-align:justify;">A detecção de features tem inúmeras aplicações práticas, incluindo o rastreamento de objetos em vídeos, a montagem de panoramas por meio de image stitching, o reconhecimento de formas em sistemas industriais, a calibração e orientação de câmeras em robótica e a localização de padrões para realidade aumentada. Em síntese, o estudo de features possibilita converter informações visuais em dados matemáticos interpretáveis pelo computador, sendo um dos pilares da visão computacional moderna e permitindo que sistemas artificiais possam “entender” e analisar o conteúdo das imagens com precisão e consistência.</p>
+      
       <h3>3. Materiais e Métodos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      
+      <p style="text-align:justify;">Os experimentos da Aula 6 foram realizados utilizando a biblioteca OpenCV em linguagem C++, aplicada tanto para processamento de imagens estáticas quanto para captura e análise em tempo real por meio da webcam. Inicialmente, foram selecionadas as imagens obtidas em aulas anteriores, bem como algumas imagens utilizadas no projeto de vídeo do grupo, servindo como base para a implementação dos algoritmos de detecção de *features*. Todos os testes foram desenvolvidos em ambiente de programação configurado com o compilador **g++** e suporte às bibliotecas do OpenCV, executados em sistemas compatíveis com Linux ou Windows.</p>
+
+<p style="text-align:justify;">O primeiro experimento consistiu na criação de um programa capaz de realizar a leitura de imagens previamente armazenadas e aplicar os métodos de detecção de *features*, com destaque para o Shi–Tomasi Corner Detector e o algoritmo Good Features to Track, conforme apresentado na documentação oficial do OpenCV. O programa processou cada imagem identificando os pontos de interesse (cantos ou features) e marcou-os graficamente sobre a imagem original, salvando os resultados em arquivos de saída no formato de imagem. Essa etapa teve como objetivo visualizar o comportamento dos detectores em diferentes tipos de cena, com variações de textura, contraste e iluminação.</p>
+
+<p style="text-align:justify;">No segundo experimento, o código foi modificado para realizar a captura de imagens em tempo real utilizando a webcam do computador. O programa foi estruturado para exibir simultaneamente duas janelas: uma contendo a imagem original capturada e outra apresentando o resultado da detecção das features em tempo real. Esse procedimento permitiu observar o desempenho dos algoritmos sob condições dinâmicas, avaliando a estabilidade e a quantidade de pontos detectados a cada quadro. Foram realizadas filmagens envolvendo os integrantes do grupo e também um tabuleiro de xadrez preto e branco, escolhido por conter um padrão geométrico com cantos bem definidos e amplamente utilizado em calibração de câmeras.</p>
+
+<p style="text-align:justify;">Além da implementação prática, foram realizadas pesquisas complementares sobre as aplicações das técnicas de detecção de *features* e *corners* em diferentes áreas da visão computacional. Foram discutidos exemplos de uso em sistemas de rastreamento de movimento, reconstrução tridimensional, reconhecimento de objetos e calibração de câmeras, relacionando essas aplicações com possíveis usos no projeto desenvolvido na disciplina. Dessa forma, os métodos empregados combinaram estudo teórico, experimentação prática e análise comparativa, proporcionando uma compreensão abrangente dos fundamentos e das aplicações da detecção de features em imagens digitais.</p>
+
+<h3>Diagrama de Blocos</h3>
+       <figure style="max-width: 1100px; margin: 24px auto; text-align: center;">
+  <img src="imagens/Bloco_Features.png"
+       loading="lazy"
+       style="width:100%; height:auto; border-radius:12px; border:2px solid #aaa; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  <figcaption style="font:15px/1.5 Arial, sans-serif; color:#333; margin-top:10px;">
+    Diagrama de blocos de subtração de fundo e detecção de movimento no OpenCV.
+  </figcaption>
+</figure>
+      
       <h3>4. Resultados e Análises</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">...</p>
+      
       <h3>5. Conclusões</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">...</p>
     </div>
     </div>
   </details>
