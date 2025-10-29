@@ -2053,6 +2053,105 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
       <p style="text-align:justify;">...</p>
       
       <h3>Quais aplicações práticas podem ser realizadas com técnicas de Detecção de Features de detecção de Corners? (Cite exemplos e apresente um experimento. Este pode ser do proprio projeto da disciplina.)</h3>
+        <p>
+    As técnicas de detecção de features, especialmente a 
+    detecção de corners(cantos), possuem ampla aplicação prática em 
+    diferentes áreas da Visão Computacional e do 
+    Processamento de Imagens. Esses pontos de interesse servem como 
+    referências confiáveis para identificar, rastrear e relacionar regiões de 
+    uma imagem com outras, sendo utilizados em diversas tarefas de análise 
+    visual automatizada.
+  </p>
+
+  <h3>Aplicações práticas</h3>
+
+  <h4>1. Rastreamento de movimento (Optical Flow)</h4>
+  <p>
+    Cantos são pontos ideais para acompanhar o movimento de objetos entre 
+    quadros consecutivos de um vídeo. Por exemplo, o método 
+    Lucas–Kanade utiliza os cantos detectados porShi–Tomasi
+    para rastrear o deslocamento desses pontos ao longo do tempo, permitindo 
+    identificar o movimento de pessoas, veículos ou partes específicas de uma cena.
+  </p>
+
+  <h4>2. Calibração de câmeras</h4>
+  <p>
+    O padrão de tabuleiro xadrez é amplamente usado em calibração porque fornece 
+    cantos bem definidos e facilmente detectáveis. Ao identificar as interseções 
+    do tabuleiro em múltiplas imagens, é possível calcular os 
+    parâmetros intrínsecos e extrínsecos da câmera (foco, 
+    distorção, posição e orientação).
+  </p>
+
+  <h4>3. Reconstrução 3D e estereovisão</h4>
+  <p>
+    Em sistemas com duas câmeras, os cantos detectados nas duas imagens permitem 
+    encontrar correspondências entre pontos homólogos. A partir dessas 
+    correspondências, calcula-se a profundidade dos pontos e 
+    reconstrói-se o modelo tridimensional da cena.
+  </p>
+
+  <h4>4. Mosaico de imagens (Image Stitching)</h4>
+  <p>
+    Ao detectar cantos e outros features em diferentes imagens de uma 
+    mesma cena, é possível emparelhá-los e calcular as transformações necessárias 
+    para uni-las, criando panoramas. Essa técnica é usada em aplicativos de 
+    câmeras de celular e em softwares de edição de imagem.
+  </p>
+
+  <h4>5. Reconhecimento e localização de objetos</h4>
+  <p>
+    Detectores de features podem ser usados para reconhecer padrões 
+    fixos (como logotipos, faces, placas ou produtos), comparando os pontos 
+    detectados em uma imagem de referência com os da imagem analisada.
+  </p>
+
+  <h3>Experimento proposto (projeto da disciplina)</h3>
+
+  <p>
+    No contexto do projeto de vídeo do grupo (RoadWatch), 
+    a detecção de features pode ser aplicada para 
+    rastrear o movimento do celular nas mãos do motorista
+    durante uma gravação. O experimento consiste em:
+  </p>
+
+  <ol>
+    <li>
+      Capturar um vídeo curto do motorista segurando o celular ao volante.
+    </li>
+    <li>
+      Aplicar o detector Shi–Tomasi em cada quadro para localizar
+      cantos nas bordas do celular.
+    </li>
+    <li>
+      Usar o método Lucas–Kanade Optical Flow para acompanhar o 
+      movimento desses pontos ao longo do tempo.
+    </li>
+    <li>
+      Analisar o deslocamento das features: caso os pontos 
+      correspondentes ao celular se movam significativamente enquanto o carro 
+      está parado, o sistema pode identificar o uso do aparelho.
+    </li>
+  </ol>
+
+  <p>
+    Esse experimento demonstra como a detecção de cantos e o rastreamento de 
+  features são ferramentas poderosas para 
+   análise de comportamento em vídeo, podendo ser integradas em 
+    aplicações de segurança veicular, monitoramento 
+    e visão inteligente.
+  </p>
+
+  <h3>Conclusão</h3>
+
+  <p>
+    Em resumo, as técnicas de detecção de features transformam 
+    informações visuais em dados mensuráveis, possibilitando o desenvolvimento 
+    de sistemas capazes de perceber, interpretar e reagir a estímulos visuais de 
+    forma autônoma e precisa. Elas são um dos pilares da visão computacional 
+    moderna e conectam diretamente a captura de imagem com análise inteligente 
+    e tomada de decisão automática.
+  </p>
       
       <h3>5. Conclusões</h3>
       <p style="text-align:justify;">...</p>
