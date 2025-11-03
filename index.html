@@ -2242,15 +2242,43 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
     <summary>Relatório 7</summary>
     <header class="content">
       <p><strong>Integrantes:</strong> Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier</p>
-      <p><strong>Data:</strong> X/X/2025</p>
+      <p><strong>Data:</strong> 10/11/2025</p>
     </header>
     <div class="content">
       <h3>1. Introdução</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 2...</p>
+        <p style="text-align:justify;">Esta prática tem como objetivo introduzir os conceitos fundamentais de detecção de objetos utilizando o OpenCV em C++, com foco na detecção de rostos por meio de classificadores em cascata (Cascade Classifier) baseados em Haar-like features. Para isso, o estudante deve primeiro revisar a teoria, compreendendo como esses modelos funcionam, desde a extração de características e o uso de janelas deslizantes até a estrutura em múltiplas etapas que permite decidir rapidamente se uma região da imagem representa ou não o objeto de interesse. Em seguida, serão utilizados modelos pré-treinados em arquivos XML disponibilizados pelo OpenCV, responsáveis por reconhecer padrões visuais, como rostos frontais e perfis faciais.</p>
+
+  <p style="text-align:justify;">No primeiro experimento, será desenvolvido um programa em C++ capaz de carregar imagens dos integrantes da equipe, além da imagem com avatares e imagens do projeto de vídeo. O sistema deverá realizar a detecção de rostos e/ou outros objetos escolhidos, marcando as regiões detectadas com retângulos ou indicadores visuais em **cores contrastantes. O programa também deve permitir que o usuário salve as imagens anotadas ao pressionar uma tecla, registrando no relatório qual arquivo XML foi utilizado (por exemplo, `haarcascade_frontalface_default.xml` ou outro modelo Haarcascade disponível no repositório oficial do OpenCV).</p>
+
+  <p style="text-align:justify;">No segundo experimento, o código será adaptado para realizar a captura ao vivo pela webcam, exibindo em tempo real a imagem da câmera juntamente com o resultado da detecção de objetos. Da mesma forma, o usuário deverá poder salvar quadros detectados sob comando. Ao final, espera-se que o estudante compreenda o funcionamento e as limitações desses detectores clássicos — como sensibilidade à iluminação, variação de pose e oclusões — além de adquirir prática na configuração e uso dos classificadores Haarcascade, ajustes de parâmetros, integração com webcams e manipulação de imagens no OpenCV. O relatório deve incluir as imagens geradas, observações sobre a precisão da detecção, parâmetros utilizados e um breve comentário sobre boas práticas e ética no uso de detecção facial, incluindo cuidado com privacidade e consentimento ao registrar imagens de pessoas reais.</p>
+ 
       <h3>2. Fundamentos Básicos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+       <p style="text-align:justify;">A detecção automática de objetos é uma tarefa fundamental em visão computacional, permitindo identificar e localizar elementos relevantes em imagens ou vídeos, como rostos, pessoas, veículos ou outros padrões visuais. No contexto desta atividade, será utilizada a técnica de classificadores em cascata baseada em Haar-like features, um método clássico que antecede o uso extensivo de redes neurais e ainda é bastante útil para fins acadêmicos e aplicações em tempo real.</p>
+
+ <p style="text-align:justify;">Os classificadores Haarcascade funcionam a partir de um conjunto de características simples que analisam variações de intensidade entre regiões claras e escuras da imagem. Essas características são calculadas de forma muito rápida por meio da estrutura chamada imagem integral, que agiliza o cálculo de somas de pixels em regiões retangulares. A detecção ocorre por meio de uma sequência de etapas chamada cascata: cada estágio avalia a imagem e descarta rapidamente áreas que não correspondem ao objeto; apenas as regiões que passam por todas as fases são consideradas como detecções válidas. Essa abordagem garante eficiência e velocidade, permitindo seu uso em dispositivos com potência de processamento limitada.</p>
+
+ <p style="text-align:justify;">Para facilitar sua aplicação, o OpenCV disponibiliza arquivos XML pré-treinados, conhecidos como Haarcascades, contendo modelos preparados para diferentes objetos, como rosto frontal, perfil facial, olhos, sorriso e outros. Assim, o estudante pode focar na implementação e experimentação do algoritmo sem necessidade de treinar um modelo do zero. A detecção costuma ser feita em imagens em tons de cinza, já que o método se baseia exclusivamente em diferenças de intensidade, e frequentemente são aplicadas técnicas simples de pré-processamento, como equalização de histograma, para melhorar contraste e estabilidade da detecção.</p>
+
+ <p style="text-align:justify;">Entre os pontos fortes desse método destacam-se sua simplicidade, velocidade e boa performance em situações controladas. Por outro lado, há limitações, como sensibilidade a iluminação variável, mudanças bruscas de posição ou rotação do rosto e oclusões parciais, como uso de máscaras ou objetos cobrindo o rosto. Mesmo com essas restrições, o estudo desse tipo de algoritmo é importante, pois ele representa um marco histórico no avanço da visão computacional e fornece uma base sólida para compreender métodos modernos de detecção, como aqueles baseados em aprendizado profundo.</p>
+
+
       <h3>3. Materiais e Métodos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <p style="text-align:justify;">Para a realização desta atividade, foi utilizado um computador com sistema operacional compatível com a biblioteca OpenCV e suporte à compilação em C++. O ambiente de desenvolvimento empregado inclui o compilador g++, juntamente com a instalação da biblioteca OpenCV versão 4.x ou superior, necessária para carregar os modelos pré-treinados, manipular imagens, acessar a webcam e executar o algoritmo de detecção. Também foram utilizados arquivos XML contendo modelos Haarcascade disponibilizados pelo OpenCV, incluindo, por exemplo, o classificador frontal para detecção de rostos. As imagens de referência consistiram em fotografias dos integrantes do grupo, avatares utilizados em atividades anteriores e quadros extraídos do vídeo desenvolvido no projeto da disciplina, além do uso de uma webcam integrada ou externa para a fase de captura em tempo real.</p>
+
+<p style="text-align:justify;">O procedimento foi dividido em duas etapas principais. Na primeira, desenvolveu-se um programa em C++ capaz de carregar imagens estáticas e aplicar o classificador em cascata para detecção de rostos ou outros objetos. Inicialmente, a imagem foi lida e convertida para tons de cinza, permitindo ao detector trabalhar apenas com variações de intensidade luminosa. Em seguida, aplicou-se, quando necessário, a equalização de histograma para melhorar o contraste e aumentar as chances de detecção. Depois disso, o classificador Haarcascade foi carregado a partir do arquivo XML correspondente e o método detectMultiScale foi utilizado para localizar possíveis regiões contendo rostos. As áreas detectadas foram marcadas com retângulos coloridos para facilitar a visualização e o programa foi configurado para salvar as imagens anotadas ao pressionar uma tecla. Essa etapa permitiu avaliar diferentes parâmetros, como escala, número mínimo de vizinhos e tamanho mínimo de objeto detectado.</p>
+
+<p style="text-align:justify;">Na segunda etapa, o código foi modificado para operar com captura ao vivo por webcam. O programa passou a abrir uma janela que exibia continuamente o fluxo de vídeo, aplicando o mesmo processo de detecção quadro a quadro. Assim como na etapa anterior, foi mantida a possibilidade de salvar imagens com as detecções sempre que o usuário solicitasse. Foram observados aspectos como taxa de atualização, latência e consistência das detecções em movimento, além do impacto de condições de iluminação e distância do rosto em relação à câmera.</p>
+      
+       <h3>Diagrama de Blocos</h3>
+             <figure style="max-width: 1100px; margin: 24px auto; text-align: center;">
+  <img src="imagens/fluxograma_lab7.png"
+       loading="lazy"
+       style="width:100%; height:auto; border-radius:12px; border:2px solid #aaa; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  <figcaption style="font:15px/1.5 Arial, sans-serif; color:#333; margin-top:10px;">
+    Diagrama de blocos de Haarcascade.
+  </figcaption>
+</figure>
+      
       <h3>4. Resultados e Análises</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
       <h3>5. Conclusões</h3>
