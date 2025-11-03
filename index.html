@@ -2280,9 +2280,77 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
 </figure>
       
       <h3>4. Resultados e Análises</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
-      <h3>5. Conclusões</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+      <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Leitura de Imagem dos Integrantes e Avatares</h4>
+    <p style="text-align:justify;">
+      O programa foi configurado para carregar imagens dos membros da equipe e de seus respectivos avatares. As detecções foram exibidas 
+      na tela e, ao pressionar uma tecla, as imagens foram salvas com os retângulos marcando os objetos detectados. As faces dos integrantes
+      foram detectadas usando o modelo haarcascade_frontalface_alt2.xml do OpenCV. Com o modelo haarcascade_eye_tree_eyeglasses.xml, os olhos
+      foram identificados, mas não com a mesma precisão de identificação do modelo anterior, que identificou corretamente o formato das faces.
+      Nos avatares, a detecção funcionou melhor devido a uma melhor iluminação e definição de imagem.
+    </p>
+    </section>
+
+    <figure style="max-width: 720px; margin: 16px auto; text-align: center;">
+      <img src="imagens/teste_1_detected.png"
+           loading="lazy"
+           style="width:60%; height:auto; border-radius:8px; border:1px solid #ccc;">
+      <figcaption style="font:14px/1.4 Arial, sans-serif; color:#00000; margin-top:8px;">
+        Imagem da Ingrid após aplicação do modelo HaarCascade.
+      </figcaption>
+    </figure>  
+      
+    <figure style="max-width: 720px; margin: 16px auto; text-align: center;">
+      <img src="imagens/avatarFernanda_detected.png"
+           loading="lazy"
+           style="width:60%; height:auto; border-radius:8px; border:1px solid #ccc;">
+      <figcaption style="font:14px/1.4 Arial, sans-serif; color:#00000; margin-top:8px;">
+        Avatar da Fernanda após aplicação do modelo HaarCascade.
+      </figcaption>
+    </figure>
+
+    <figure style="max-width: 720px; margin: 16px auto; text-align: center;">
+      <img src="imagens/avatarGabriel_detected.png"
+           loading="lazy"
+           style="width:60%; height:auto; border-radius:8px; border:1px solid #ccc;">
+      <figcaption style="font:14px/1.4 Arial, sans-serif; color:#00000; margin-top:8px;">
+        Avatar do Gabriel após aplicação do modelo HaarCascade.
+      </figcaption>
+    </figure>
+
+    <section style="max-width: 900px; margin: 20px auto; text-align: justify; font-family: Arial, sans-serif; line-height: 1.6;">
+    <h4>Leitura de Imagem da Webcam</h4>
+    <p style="text-align:justify;">
+      No segundo experimento utilizou-se a webcam para capturar e exibir as detecções em tempo real. O algoritmo aplicava a detecção 
+      de rostos e olhos, e ao pressionar uma tecla, salvava a imagem com as marcações em diferentes cores. A detecção da face foi 
+      estável e rápida, mesmo com variações leves de posição e iluminação. Na região dos olhos ouve uma certa variação de precisão,
+      mas ainda assim o algoritmo conseguiu detectar e marcar com retângulos vermelhos a região. Quando havia movimento rápido ou 
+      baixa iluminação, algumas falhas ocorreram, mas o algoritmo se recuperava rapidamente.
+    </p>
+    </section>
+
+    <figure style="max-width: 720px; margin: 16px auto; text-align: center;">
+      <img src="imagens/Captura de tela de 2025-11-03 09-17-34.png"
+           loading="lazy"
+           style="width:70%; height:auto; border-radius:8px; border:1px solid #ccc;">
+      <figcaption style="font:14px/1.4 Arial, sans-serif; color:#00000; margin-top:8px;">
+        Captura de Tela da Webcam após aplicação do modelo HaarCascade.
+      </figcaption>
+    </figure>
+    
+    <h3>5. Conclusões</h3>
+     <p style="text-align:justify;">
+       A partir das análises realizadas, pode-se concluir que o método Haar Cascade apresentou 
+       desempenho considerável na detecção de rostos e olhos, tanto em imagens estáticas quanto 
+       em vídeo ao vivo. A utilização dos modelos haarcascade_frontalface_alt2.xml e 
+       haarcascade_eye_tree_eyeglasses.xml garantiu resultados satisfatórios, com identificação 
+       mesmo diante de expressões faciais variadas.
+
+       No entanto, observou-se que a eficácia do método está diretamente relacionada a condições adequadas 
+       de captura, como boa iluminação, posição frontal do rosto e ausência de oclusões ou movimentações bruscas.
+       Assim, embora o algoritmo seja eficiente, seu desempenho pode ser comprometido em ambientes com baixa 
+       luminosidade ou ângulos desfavoráveis.
+      </p>
     </div>
     </div>
   </details>
