@@ -2360,15 +2360,47 @@ Realize este experimento com cada integrante do grupo e com um objeto colorido.<
     <summary>Relatório 8</summary>
     <header class="content">
       <p><strong>Integrantes:</strong> Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier</p>
-      <p><strong>Data:</strong> X/X/2025</p>
+      <p><strong>Data:</strong> 10/11/2025</p>
     </header>
     <div class="content">
       <h3>1. Introdução</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 2...</p>
+
+<p style="text-align:justify;">O rastreamento de objetos (object tracking) é uma etapa central em sistemas de visão computacional que precisam acompanhar, em tempo real, a posição de um alvo ao longo de uma sequência de quadros. Essa tarefa está presente em aplicações como vigilância inteligente, assistência à condução, análise esportiva e interação homem–máquina. Diferente da detecção, que localiza objetos quadro a quadro, o rastreamento mantém a identidade e a trajetória do mesmo objeto ao longo do vídeo, mesmo diante de oclusões parciais, mudanças de escala, iluminação e movimentação da câmera.</p>
+
+<p style="text-align:justify;">Neste laboratório (Aula 8 – Lab 8), estudaremos e implementaremos rastreadores clássicos do OpenCV e também um rastreador baseado em aprendizado profundo (GOTURN). Como base teórica, utilizaremos três referências: (A) o tutorial oficial Introduction to OpenCV Tracker, que apresenta a API cv::Tracker e rastreadores como KCF, CSRT, MOSSE, MIL e TLD; (B) o guia Object Tracking using OpenCV (C++/Python), com exemplos práticos de implementação e boas práticas; e (C) GOTURN: Deep Learning based Object Tracking, que introduz um rastreador baseado em regressão com aprendizado prévio capaz de prever a posição do objeto a partir de pares de frames consecutivos.</p>
+
+<p style="text-align:justify;">O laboratório está dividido em dois experimentos. No Experimento (1), será desenvolvido um programa em C++ que realiza a leitura de vídeos, inclusive vídeos do projeto de vídeo do grupo, permitindo a seleção manual da ROI inicial e executando o rastreamento do objeto com um dos métodos estudados. O programa deve apresentar o resultado na tela e salvar o vídeo com o objeto rastreado. No Experimento (2), será feita uma modificação para capturar imagens da webcam, exibindo o rastreamento em tempo real e também salvando o vídeo processado. Para testar o rastreador baseado em deep learning, o arquivo goturn.caffemodel é fornecido e deve ser salvo na mesma pasta dos arquivos do laboratório antes da execução.</p>
+
+<p style="text-align:justify;">Além de reforçar os conceitos teóricos, este laboratório enfatiza organização e boas práticas em desenvolvimento de software: estrutura do projeto, tratamento de erros na captura de vídeo e webcam, controle de taxa de quadros, codificação do vídeo de saída e padronização da interface de visualização. Também serão considerados critérios de avaliação qualitativos, como estabilidade da caixa delimitadora, robustez a oclusões e jitter, e quantitativos simples, como tempo de processamento por frame e taxa de FPS alcançada. Por fim, reforça-se a importância do uso ético das imagens, garantindo consentimento e responsabilidade no uso de vídeos pessoais e de câmera ao vivo.</p>
+
       <h3>2. Fundamentos Básicos</h3>
-      <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+<p style="text-align:justify;">O rastreamento de objetos é uma técnica da visão computacional que permite acompanhar a posição de um alvo ao longo do tempo em uma sequência de vídeo. Diferentemente da detecção de objetos, que realiza a identificação quadro a quadro de maneira independente, o rastreamento utiliza informações temporais para prever onde o objeto estará nos frames seguintes, mantendo assim sua continuidade e identidade ao longo de toda a sequência. Para iniciar o processo, normalmente o usuário seleciona manualmente uma região de interesse (ROI) que contém o objeto a ser rastreado, e essa caixa inicial serve como referência para que o algoritmo procure e atualize sua posição nos quadros seguintes.</p>
+
+<p style="text-align:justify;">Existem diferentes abordagens para rastreamento. Os métodos clássicos utilizam características visuais como textura, bordas e padrões de movimento para comparar a região inicial com as próximas imagens. Algoritmos comuns no OpenCV incluem MIL, KCF, CSRT e MOSSE, cada um possuindo vantagens específicas quanto à velocidade, precisão e robustez contra mudanças de iluminação ou movimento rápido. Esses rastreadores funcionam estimando a semelhança entre a aparência inicial do objeto e sua aparência atual, ajustando continuamente a posição da caixa delimitadora.</p>
+
+<p style="text-align:justify;">Além dos métodos tradicionais, existem técnicas baseadas em aprendizado profundo, como o rastreador GOTURN. Esse tipo de abordagem utiliza redes neurais previamente treinadas para aprender representações mais sofisticadas da aparência e variação do objeto, permitindo lidar melhor com transformações como mudanças bruscas de escala, oclusões parciais e deformações. Em vez de depender apenas de correlação de pixels ou descritores manuais, o GOTURN prevê diretamente a nova localização do objeto ao comparar pares de frames consecutivos, tornando o processo mais adaptativo e preciso em cenários complexos.</p>
+
+<p style="text-align:justify;">O desempenho do rastreamento pode ser avaliado por critérios como estabilidade da caixa ao longo dos frames, capacidade de acompanhar o objeto mesmo com oclusões ou mudanças de iluminação, precisão da predição da posição e velocidade de execução medida em frames por segundo (FPS). Essas características são essenciais em aplicações como vigilância por vídeo, análise esportiva, interação humana com sistemas computacionais, robótica e veículos autônomos. Dessa forma, o rastreamento de objetos combina fundamentos matemáticos, técnicas de processamento de imagens e, em abordagens mais modernas, redes neurais profundas para oferecer ferramentas poderosas em aplicações práticas de visão computacional.</p>
+
       <h3>3. Materiais e Métodos</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
+<p style="text-align:justify;">Para a realização deste laboratório, foram utilizados computadores com sistema operacional compatível com a biblioteca OpenCV e compilador C++ suportado (como g++ ou Visual Studio). A biblioteca OpenCV foi previamente instalada com suporte aos módulos necessários para rastreamento, incluindo a API de rastreadores tradicionais (como KCF, CSRT e MOSSE) e, no caso do uso do rastreador baseado em aprendizado profundo, suporte ao modelo GOTURN. Também foi utilizado o arquivo de rede neural pré-treinado goturn.caffemodel, disponibilizado pelo professor, o qual foi salvo na mesma pasta do projeto a fim de permitir o carregamento adequado do modelo. Além disso, foram utilizados vídeos com membros da equipe e vídeos gerados no trabalho de vídeo desenvolvido previamente na disciplina, bem como uma câmera webcam integrada ou externa para capturar vídeo em tempo real no segundo experimento.</p>
+
+<p style="text-align:justify;">O método adotado consistiu inicialmente na leitura de um vídeo pelo programa em C++, seguida da seleção manual da região de interesse (ROI) correspondente ao objeto a ser rastreado. Após essa seleção, foi inicializado um dos rastreadores estudados, mantendo a posição inicial do objeto como referência para os quadros subsequentes. A cada frame, o rastreador atualizou automaticamente a posição da caixa delimitadora com base na similaridade entre o objeto inicialmente selecionado e sua aparência atual. Conforme solicitado, o vídeo com o retângulo de rastreamento foi exibido na tela e simultaneamente salvo em arquivo, garantindo registro dos resultados.</p>
+
+<p style="text-align:justify;">No segundo experimento, o mesmo procedimento foi adaptado para entrada via webcam. O programa capturou continuamente os frames da câmera, permitiu a seleção manual do objeto no início da execução e passou a rastrear o alvo em tempo real, exibindo a imagem com a caixa delimitadora atualizada e gravando o vídeo resultante. Durante todo o processo, foram considerados elementos de desempenho como taxa de quadros e estabilidade do rastreamento, testando diferentes rastreadores para observar mudanças no comportamento do algoritmo em situações reais, como variações de iluminação, movimento rápido ou pequenas oclusões do objeto.</p>
+
+  <h3>Diagrama de Blocos</h3>
+             <figure style="max-width: 1500px; margin: 24px auto; text-align: center;">
+  <img src="imagens/bloco_lab8.png"
+       loading="lazy"
+       style="width:100%; height:auto; border-radius:12px; border:2px solid #aaa; box-shadow:0 4px 12px rgba(0,0,0,0.2);">
+  <figcaption style="font:15px/1.5 Arial, sans-serif; color:#333; margin-top:10px;">
+    Diagrama de blocos de Rastreamento de Objetos.
+  </figcaption>
+</figure>
+
       <h3>4. Resultados e Análises</h3>
       <p style="text-align:justify;">Resumo do objetivo do Relatório 3...</p>
       <h3>5. Conclusões</h3>
