@@ -341,8 +341,66 @@
     <!-- ETAPA 4 -->
     <details>
       <summary>ETAPA 4: Desenvolvimento do Sistema de Processamento da Visão (SPV)</summary>
-      <div class="content">Coloque aqui o conteúdo da Etapa 4.</div>
-    </details>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      A Modelagem Funcional do Sistema de Processamento da Visão (SPV) do RoadWatch organiza de forma lógica os módulos e operações necessárias para transformar a entrada de vídeo capturada pela câmera em notificações automáticas de uso indevido de celular durante a condução. O processo é estruturado em cinco etapas principais: captura de imagem, pré-processamento, extração de características, lógica de decisão e saída.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">1. Captura de Imagem</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      O sistema recebe como entrada um fluxo contínuo de vídeo proveniente da câmera frontal instalada no ambiente de monitoramento veicular. Essa captura é feita em tempo real por meio da biblioteca OpenCV, garantindo taxa de quadros suficiente para rastreamento contínuo do condutor.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">2. Pré-Processamento</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      As imagens passam por calibração intrínseca da câmera, correção de distorções ópticas e ajustes de brilho e contraste, assegurando maior precisão na detecção. Essa etapa também inclui a conversão de cor para o formato RGB e o redimensionamento das imagens, otimizando o desempenho do modelo MediaPipe e reduzindo ruídos que possam afetar a identificação de mãos e face.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">3. Extração de Características</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      Nesta etapa, o módulo MediaPipe Object Detection identifica os principais marcos anatômicos das mãos, face e tronco do motorista. A partir da posição e movimentação desses pontos, o sistema calcula parâmetros como ângulos e distâncias entre a mão e o rosto, determinando se há interação suspeita com um celular. Esse processamento fornece as bases para a classificação de comportamento:
+      <br><br>
+      • <strong>Dirigindo normalmente:</strong> quando as mãos permanecem no volante;<br>
+      • <strong>Usando o celular:</strong> quando há aproximação significativa da mão à região da cabeça ou lateral do rosto por mais de um período limiar.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">4. Lógica de Decisão</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      O sistema utiliza um temporizador de persistência para evitar falsos positivos causados por movimentos breves. Se a postura ou gesto associado ao uso de celular persistir por mais de 5 segundos consecutivos, é acionado um gatilho de alerta. Essa lógica temporal garante robustez à detecção, distinguindo interações reais de ruídos ou ajustes ocasionais.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">5. Saída</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      Como etapa final, o sistema gera uma notificação automática via Telegram, enviando ao canal de supervisão uma mensagem que inclui o tipo de evento detectado (“Uso de celular ao volante”), o timestamp e, opcionalmente, um frame da ocorrência. Além disso, os eventos são registrados localmente para fins de auditoria e análise posterior, garantindo rastreabilidade das detecções.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">Descrição da Implementação do Sistema de Processamento da Visão (SPV)</h4>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">1. Visão Geral do Sistema</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      O RoadWatch SPV implementa um pipeline de monitoramento inteligente do condutor baseado em visão computacional. O programa captura o vídeo em tempo real no sistema Ubuntu Linux, realiza calibração óptica, estima a pose e a posição das mãos, analisa interações com o rosto e aplica uma lógica de decisão temporal para identificar o uso indevido de celular.
+      Quando o comportamento é confirmado, o evento é notificado automaticamente via Telegram, permitindo resposta imediata e automatizada.
+    </p>
+
+    <p style="margin-bottom: 18px;">
+      <strong>Bibliotecas utilizadas:</strong><br><br>
+       • OpenCV → Captura e exibição de vídeo, calibração e correção de distorção óptica;<br>
+       • MediaPipe Object Detection → Detecção automática de objetos (como celular, rosto e mãos) em tempo real, com base em bounding boxes e confiança de classificação, permitindo identificar a presença e posição do celular no campo de visão do motorista;<br>
+       • requests → Comunicação HTTP para envio de mensagens ao bot do Telegram;<br>
+
+    <strong>  </p>INSERIR BIBLIOTECAS FALTANTES  !!!!!!!!!!!!!!!!</strong> </p>
+
+    <p style="text-align: justify; margin-bottom: 18px;">
+      Todas as bibliotecas utilizadas são gratuitas, amplamente reconhecidas e possuem documentação pública, assegurando a reprodutibilidade e a confiabilidade do sistema desenvolvido.
+    </p>
+
+ <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">2. Explicações sobre o Script Desenvolvido</h4>
+    <p style="text-align: justify; margin-bottom: 18px;">
+      A seguir é apresentado o script e a descrição do seu funcionamento:<br><br>
+      <strong>INSERIR CÓDIGO !!!!!!!!!!!!!! </strong> 💻
+    </p>
+
+  </div>
+</details>
 
     <!-- ETAPA 5 -->
     <details>
