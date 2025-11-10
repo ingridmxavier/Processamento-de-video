@@ -338,7 +338,7 @@
       </div>
     </details>
 
-    <!-- ETAPA 4 -->
+   <!-- ETAPA 4 -->
     <details>
       <summary>ETAPA 4: Desenvolvimento do Sistema de Processamento da Visão (SPV)</summary>
     <p style="text-align: justify; margin-bottom: 18px;">
@@ -347,30 +347,39 @@
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">1. Captura de Imagem</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      O sistema recebe como entrada um fluxo contínuo de vídeo proveniente da câmera frontal instalada no ambiente de monitoramento veicular. Essa captura é feita em tempo real por meio da biblioteca OpenCV, garantindo taxa de quadros suficiente para rastreamento contínuo do condutor.
+      O sistema recebe como entrada um fluxo contínuo de vídeo proveniente da webcam conectada ao computador.
+Essa captura é feita em tempo real por meio da biblioteca OpenCV, utilizando a classe VideoCapture, que garante uma taxa de quadros adequada para o monitoramento contínuo do ambiente.
+Caso a câmera não seja detectada, o programa exibe uma mensagem de erro no console, utilizando as funções de saída da biblioteca padrão C++
     </p>
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">2. Pré-Processamento</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      As imagens passam por calibração intrínseca da câmera, correção de distorções ópticas e ajustes de brilho e contraste, assegurando maior precisão na detecção. Essa etapa também inclui a conversão de cor para o formato RGB e o redimensionamento das imagens, otimizando o desempenho do modelo MediaPipe e reduzindo ruídos que possam afetar a identificação de mãos e face.
+      As imagens capturadas são convertidas para o formato em tons de cinza com a função cvtColor, reduzindo a complexidade computacional.
+Em seguida, aplica-se um subtrator de fundo (BackgroundSubtractorMOG2), responsável por distinguir objetos em movimento do cenário estático.
+Operações como erosão e dilatação ajudam a remover ruídos e destacam melhor as regiões de interesse.
+Essas etapas, todas implementadas com funções do OpenCV, garantem maior precisão na detecção de movimento real.
     </p>
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">3. Extração de Características</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      Nesta etapa, o módulo MediaPipe Object Detection identifica os principais marcos anatômicos das mãos, face e tronco do motorista. A partir da posição e movimentação desses pontos, o sistema calcula parâmetros como ângulos e distâncias entre a mão e o rosto, determinando se há interação suspeita com um celular. Esse processamento fornece as bases para a classificação de comportamento:
-      <br><br>
-      • <strong>Dirigindo normalmente:</strong> quando as mãos permanecem no volante;<br>
-      • <strong>Usando o celular:</strong> quando há aproximação significativa da mão à região da cabeça ou lateral do rosto por mais de um período limiar.
+      Com a máscara de movimento pronta, o sistema utiliza funções como findContours e contourArea para identificar regiões em movimento e determinar qual delas possui a maior área.
+O retângulo delimitador (boundingRect) é desenhado em torno do objeto detectado, e o texto “OBJETO DETECTADO” é exibido na imagem em tempo real.
+Além disso, o código utiliza o método calcOpticalFlowPyrLK para rastrear pontos de interesse entre quadros consecutivos, permitindo estimar o movimento real e contínuo dentro da cena.
     </p>
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">4. Lógica de Decisão</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      O sistema utiliza um temporizador de persistência para evitar falsos positivos causados por movimentos breves. Se a postura ou gesto associado ao uso de celular persistir por mais de 5 segundos consecutivos, é acionado um gatilho de alerta. Essa lógica temporal garante robustez à detecção, distinguindo interações reais de ruídos ou ajustes ocasionais.
+      A lógica de decisão é baseada na análise temporal do movimento detectado.
+O programa monitora o número de quadros consecutivos com movimento significativo; se o contador (movimentoConsecutivo) ultrapassar um limiar, o sistema confirma a presença de movimento real e persistente.
+Esse controle evita falsos positivos causados por ruídos ou pequenas variações na iluminação.
+Variáveis booleanas e condicionais controlam a abertura de janelas de alerta e a exibição de mensagens no console, utilizando recursos da biblioteca padrão C++.
     </p>
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">5. Saída</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      Como etapa final, o sistema gera uma notificação automática via Telegram, enviando ao canal de supervisão uma mensagem que inclui o tipo de evento detectado (“Uso de celular ao volante”), o timestamp e, opcionalmente, um frame da ocorrência. Além disso, os eventos são registrados localmente para fins de auditoria e análise posterior, garantindo rastreabilidade das detecções.
+      Na etapa final, o sistema gera uma janela de alerta com o nome da equipe e uma mensagem visual de detecção.
+Também são registradas mensagens no console, indicando a ocorrência de movimento real.
+A biblioteca <ctime> pode ser utilizada para gerar timestamps dos eventos detectados, possibilitando a integração futura com sistemas de registro ou auditoria.
     </p>
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">Descrição da Implementação do Sistema de Processamento da Visão (SPV)</h4>
@@ -384,10 +393,8 @@
     <p style="margin-bottom: 18px;">
       <strong>Bibliotecas utilizadas:</strong><br><br>
        • OpenCV → Captura e exibição de vídeo, calibração e correção de distorção óptica;<br>
-       • MediaPipe Object Detection → Detecção automática de objetos (como celular, rosto e mãos) em tempo real, com base em bounding boxes e confiança de classificação, permitindo identificar a presença e posição do celular no campo de visão do motorista;<br>
-       • requests → Comunicação HTTP para envio de mensagens ao bot do Telegram;<br>
-
-    <strong>  </p>INSERIR BIBLIOTECAS FALTANTES  !!!!!!!!!!!!!!!!</strong> </p>
+       • C++ Standard Library – I/O → Entrada e saída de dados no console (mensagens, logs e erros);<br>
+       • C++ Time Library → Manipulação de data e hora para registro de eventos (timestamp)..<br>
 
     <p style="text-align: justify; margin-bottom: 18px;">
       Todas as bibliotecas utilizadas são gratuitas, amplamente reconhecidas e possuem documentação pública, assegurando a reprodutibilidade e a confiabilidade do sistema desenvolvido.
@@ -395,9 +402,35 @@
 
  <h4 style="margin-top: 25px; margin-bottom: 8px; margin-left:20px; color: #000; font-weight: 600;">2. Explicações sobre o Script Desenvolvido</h4>
     <p style="text-align: justify; margin-bottom: 18px;">
-      A seguir é apresentado o script e a descrição do seu funcionamento:<br><br>
-      <strong>INSERIR CÓDIGO !!!!!!!!!!!!!! </strong> 💻
+      A seguir são apresentados os scripts necessários para rodar a aplicação e um vídeo explicando passo a passo:<br><br>
     </p>
+    
+    <iframe 
+      src="spv.cpp"
+      width="100%"
+      height="600px"
+      style="border:1px solid #ccc; border-radius:8px;"
+      title="Código CPP do Sistema RoadWatch">
+    </iframe>
+    <iframe 
+      src="CMakeLists.txt"
+      width="100%"
+      height="600px"
+      style="border:1px solid #ccc; border-radius:8px;"
+      title="CMakeLists.txt">
+    </iframe>
+
+      <figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/video_SPV.mp4" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+        Passo a passo de como rodar o código.
+      </figcaption>
+    </figure>
 
   </div>
 </details>
