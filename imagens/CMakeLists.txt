@@ -1,3 +1,20 @@
+/******************************************************
+ * Nome do Programa: CMakeLists
+ * Integrantes da Equipe RoadWatch:
+ *  - Fernanda Ayumi - RA: 11202321172
+ *  - Ingrid Xavier - RA: 11202130019
+ *  - Gabriel Rothen - RA: 11202321586
+ *
+ * Data: 2025
+ * Descrição: Sistema de detecção de movimento com OpenCV
+ * Execução no Ubuntu (terminal):
+ *      $ mkdir build
+ *      $ cd build
+ *      $ cmake ..
+ *      $ make
+ *      $ ./spv
+ ******************************************************/
+
 cmake_minimum_required(VERSION 3.10)
 project(spv)
 
