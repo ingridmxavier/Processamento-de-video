@@ -1,6 +1,6 @@
 /******************************************************
  * Nome do Programa: SPV - Sistema de Processamento Visual
- * Integrantes da Equipe:
+ * Integrantes da Equipe RoadWatch:
  *  - Fernanda Ayumi - RA: 11202321172
  *  - Ingrid Xavier - RA: 11202130019
  *  - Gabriel Rothen - RA: 11202321586
