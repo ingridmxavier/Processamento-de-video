@@ -409,14 +409,14 @@ A biblioteca <ctime> pode ser utilizada para gerar timestamps dos eventos detect
       src="imagens/spv.cpp"
       width="70%"
       height="400px"
-      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa;"
       title="Código CPP do Sistema RoadWatch">
     </iframe>
     <iframe 
       src="imagens/CMakeLists.txt"
       width="70%"
       height="400px"
-      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa;"
       title="CMakeLists.txt">
     </iframe>
 
@@ -440,22 +440,105 @@ A biblioteca <ctime> pode ser utilizada para gerar timestamps dos eventos detect
       <summary>ETAPA 5: Desenvolvimento do laboratório experimental (LEx)</summary>
       <div class="content">
         <p>Fernanda Ayumi Kuroiwa — Gabriel Henrique Pensado Rothen — Ingrid Mara Xavier </p>
-        <p><strong>Data:</strong> 12/11/2025</p>
+        <p><strong>Data:</strong> 17/11/2025</p>
+
+ <h3>Introdução</h3>
+<p style="text-align: justify; margin-bottom: 0;">
+    O Sistema de Processamento Visual RoadWatch foi desenvolvido com o objetivo de detectar o uso indevido de celular durante a condução, 
+    utilizando técnicas de visão computacional em tempo real. Por meio de uma webcam posicionada em frente ao condutor, o sistema realiza o rastreamento 
+    de pontos-chave do corpo (mãos, rosto e ombros) e aplica regras de decisão que identificam comportamentos suspeitos, como segurar o celular ou olhar 
+    para baixo. </p>
 
         <h3>Objetivo</h3>
-        <p>Preparar o Teste de Campo (TC) do SPV por meio do LEx...</p>
+        <p>Preparar e executar o Teste de Campo (TC) do Sistema de Processamento Visual RoadWatch, simulando situações reais de uso em tempo real com webcam, operadas por um usuário leigo (pessoas externas à equipe), para validar a funcionalidade, usabilidade e clareza do sistema de detecção de uso indevido de celular durante a condução.</p>
 
-        <h3>Roteiro do Laboratório Experimental (para cada aplicação)</h3>
+  
+ <h3>Casos de Aplicação </h3>
+A equipe desenvolveu cenários de teste que representam situações reais de um condutor:
+<ul style="margin: 0 0 12px 1.2rem; padding-left: 1rem; line-height: 1.5;">
+    <li>Condutor sem uso de celular (condição normal).</li>
+    <li>Condutor segurando o celular na mão direita.</li>
+    <li>Condutor com o celular próximo ao ouvido.</li>
+    <li>Condutor olhando para baixo (simulando digitação).</li>
+  </ul>
+Esses testes serão executados em tempo real com uma webcam, no ambiente de laboratório ou doméstico, considerando iluminação ambiente e posicionamento da câmera semelhantes a um painel de veículo.
+
+ <h3>Roteiro do Laboratório Experimental (para cada aplicação)</h3>
+
         <ul>
           <li>Roteiro de procedimento experimental...</li>
           <li>Figuras/imagens explicativas...</li>
         </ul>
 
-        <h3>Introdução</h3>
-        <p><!-- explicar funcionamento --></p>
 
         <h3>Procedimento experimental</h3>
         <p><!-- instruções detalhadas --></p>
+
+ <p style="text-align: justify;">
+    O procedimento experimental tem como objetivo avaliar o funcionamento do sistema RoadWatch em condições reais de uso,
+    permitindo que um usuário leigo opere o sistema e observe seu comportamento em diferentes cenários. A seguir são apresentadas as instruções
+    detalhadas para a execução do experimento:
+  </p>
+
+  <ol style="padding-left: 1.2rem; line-height: 1.6;">
+    <li><strong>Preparação do ambiente:</strong> 
+      Posicione o computador ou notebook em local bem iluminado, simulando o interior de um veículo. 
+      A webcam deve estar fixa de modo a enquadrar o rosto e os ombros do participante, 
+      semelhante à posição de uma câmera instalada no painel de um carro.
+
+    <li><strong>Inicialização do sistema:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Abra o executável "spv"</li>
+        <li>Permita o acesso à webcam quando solicitado.</li>
+ <li>Verifique se o vídeo ao vivo do condutor está sendo exibido corretamente.</li>
+        </li>Aperte "i" para iniciar, então o sistema detecta o objeto ou não e aparece na tela "Movimento detectado", senão não aparece nenhuma mensagem. e aperta "q" para sair.</li>
+</li>Aperta "q" para sair. As imagens são salvas automomaticamente</li> 
+      </ul>
+    </li>
+
+<p> O vídeo abaixo é uma demonstração do procedimento de testagem</p>
+
+<figure>
+      <div class="video-container">
+        <video controls style="width:70%; max-width:900px; height:auto; border-radius:10px;">
+          <source src="imagens/teste.webm" type="video/mp4">
+          Seu navegador não suporta a reprodução de vídeo.
+        </video>
+      </div>
+      <figcaption>
+
+    <li><strong>Execução dos cenários de teste:</strong>
+      <p style="margin-top: 6px; text-align: justify;">O participante deverá realizar as quatro situações definidas nos Casos de Aplicação, observando as mensagens exibidas na tela e as notificações enviadas via Telegram:</p>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li><strong>Cenário 1:</strong> Condutor sem uso de celular (situação normal).</li>
+        <li><strong>Cenário 2:</strong> Condutor segurando o celular com a mão direita próxima ao rosto.</li>
+        <li><strong>Cenário 3:</strong> Condutor com o celular junto ao ouvido (simulando uma ligação).</li>
+        <li><strong>Cenário 4:</strong> Condutor olhando para baixo, como se estivesse digitando.</li>
+      </ul>
+    </li>
+
+    <li><strong>Observação dos resultados:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Durante a execução, observe se o sistema exibe corretamente o status “Uso de celular detectado” ou “Condutor normal”.</li>
+        <li>Confirme se as mensagens de alerta são enviadas automaticamente pelo bot do Telegram.</li>
+        <li>Anote possíveis <em>falsos positivos</em> (alerta sem uso real de celular) ou <em>falhas de detecção</em> (não reconhecimento do uso).</li>
+      </ul>
+    </li>
+
+    <li><strong>Encerramento do teste:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Feche o programa após concluir os quatro cenários.</li>
+        <li>Preencha o questionário de avaliação (objetivo e subjetivo) fornecido pela equipe.</li>
+        <li>Informe se houve qualquer dificuldade de uso ou problema técnico.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <p style="margin-top: 10px; text-align: justify;">
+    O procedimento experimental poderá ser acompanhado de imagens ilustrativas que mostrem o enquadramento ideal da câmera, 
+    os exemplos de notificações e a interface do sistema em funcionamento, para auxiliar a compreensão do participante.
+  </p>
+
 
         <h3>Questionário de avaliação do usuário</h3>
         <ul>
