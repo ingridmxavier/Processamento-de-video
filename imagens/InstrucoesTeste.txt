@@ -1,0 +1,23 @@
+Intruções para Testar o Projeto:
+
+1. Instale o OpenCV:
+	- Siga o guia InstalaçãoOpenCV.txt para configurar a biblioteca corretamente.
+
+2. Prepare os scripts necessários para rodar o programa:
+	- Abra um editor de texto;
+	- Copie o conteúdo dos arquivos disponibilizados na Etapa 4 do repositório https://ingridmxavier.github.io/
+	- Salve ambos os arquivos (spv.cpp e CMakeLists.txt) na mesma pasta onde o OpenCV foi configurado.
+	OBS: importante salvar os arquivos com os nomes sugeridos acima.
+
+3. Abra o terminal na pasta do projeto:
+	- Clique com o botão direito dentro da pasta onde estão os arquivos e seleciona "Abrir no terminal" (ou equivalente no seu sistema).
+	
+4. Compile e execute o programa:
+	- No terminal, digite os seguintes comandos, um por um:
+	  $ mkdir build
+	  $ cd build
+	  $ cmake ..
+	  $ make
+	  $ ./spv
+
+
