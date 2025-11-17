@@ -672,12 +672,39 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
             O sistema monitora poses e movimentos que sugerem a presença do aparelho ou a atenção desviada para baixo.
           </p>
         <h3>Materiais e métodos</h3>
+<p style="text-align: justify;">A modelagem funcional do RoadWatch descreve como o sistema identifica, em tempo real, o uso indevido de celular pelo motorista a partir das imagens capturadas pela câmera instalada no veículo. O funcionamento é dividido em módulos organizados em sequência, formando um pipeline completo de processamento de vídeo e tomada de decisão. </p>
+
+<p style="text-align: justify;">O sistema inicia com a captura de imagem, que obtém continuamente os frames da câmera frontal com resolução adequada para reconhecer rosto e mãos. Em seguida, ocorre o pré-processamento, etapa responsável por melhorar a qualidade das imagens através de normalização, correção de iluminação, redução de ruídos e definição de uma região de interesse focada no motorista. </p>
+
+<p style="text-align: justify;">Com as imagens tratadas, o módulo de detecção de objetos e posições identifica elementos relevantes na cena, como face, mãos e celular, retornando coordenadas e níveis de confiança. Esses dados alimentam a análise de comportamento, que avalia temporalmente os movimentos e gestos do motorista para identificar ações típicas do uso do celular, como desviar o olhar para baixo ou levar a mão em direção ao rosto. </p>
+
+<p style="text-align: justify;">O sistema também conta com a verificação do movimento do veículo, que utiliza dados de sensores (como GPS) para confirmar se o carro está em deslocamento, evitando alertas indevidos quando o veículo está parado. </p>
+
+<p style="text-align: justify;">A etapa seguinte, de fusão de informações e decisão, integra o comportamento detectado e o estado do veículo, aplicando regras lógicas e filtros temporais para confirmar se o motorista está realmente utilizando o celular. </p>
+
+<p style="text-align: justify;">Por fim, o módulo de alertas e registro gera avisos sonoros ou visuais quando o uso do celular é confirmado e grava o evento no log, com data e hora, permitindo rastreamento e possíveis ações corretivas. </p>
+
+<p style="text-align: justify;">Assim, a modelagem funcional define de forma estruturada o fluxo de informações, garantindo que o RoadWatch combine visão computacional e análise temporal para identificar comportamentos perigosos e alertar o motorista de maneira precisa e imediata. </p>
 
         <h4>Modelagem Funcional do SPV (MF)</h4>
-        <p><!-- diagrama e papéis --></p>
+  <h3>Diagrama de Blocos - Modelagem Funcional</h3>
+          <figure>
+            <img src="imagens/Diagrama de Blocos RoadWatch.png" alt="Diagrama de blocos do sistema RoadWatch, mostrando os módulos de captura de imagem, pré-processamento, detecção de objetos, análise de comportamento e geração de alerta." style="max-width:100%; height:auto;">
+            <figcaption>Figura 1 – Diagrama de blocos do sistema RoadWatch.</figcaption>
+          </figure>
 
         <h4>Descrição da implementação do SPV</h4>
-        <p><!-- algoritmos e pipeline --></p>
+        <p style="text-align: justify;">O SPV – Sistema de Processamento Visual da equipe ROADWATCH foi implementado em C++ utilizando a biblioteca OpenCV para captura e processamento de vídeo, a biblioteca padrão de C++ (iostream, chrono, ctime) para entrada/saída e medição de tempo, e a biblioteca cURL para integração com o Telegram. A aplicação é compilada e executada em ambiente Ubuntu Linux por meio de CMake, seguindo o fluxo: criação da pasta build, configuração com cmake .., compilação com make e execução do binário ./spv.</p>
+
+<p style="text-align: justify;">Ao iniciar o programa, é exibida uma tela de menu construída com OpenCV, contendo o nome do sistema, o nome da equipe e instruções de uso. A partir desse menu, o usuário pode pressionar a tecla ‘i’ para iniciar a detecção pela webcam ou ‘q’ (ou ESC) para encerrar. Após a inicialização, o sistema abre a câmera (resolução 640×480) e cria um subtrator de fundo do tipo BackgroundSubtractorMOG2, configurado com histórico, limiar de variância e detecção de sombras ajustados para tornar o detector mais estável.</p>
+
+<p style="text-align: justify;">Em cada iteração do laço principal, o SPV captura um frame e define uma Região de Interesse (ROI) central, reduzindo a análise às áreas mais relevantes e minimizando falsos positivos nas bordas. Sobre essa ROI é aplicado um filtro Gaussiano (GaussianBlur) para suavizar ruídos de alta frequência e, em seguida, o modelo MOG2 gera a máscara de movimento. Essa máscara passa por um pós-processamento mais pesado: limiarização (threshold), operações morfológicas de abertura e fechamento (morphologyEx com elementos estruturantes elípticos) e dilatação, tudo para remover ruído, sombras e pequenas variações de luz, preservando apenas regiões de movimento consistente.</p>
+
+<p style="text-align: justify;">Os contornos são então extraídos com findContours, e cada contorno é filtrado por área mínima e máxima e por razão de aspecto (largura/altura), descartando objetos muito pequenos, muito grandes ou com formato inconsistente. Entre os contornos válidos, o sistema seleciona aquele com maior área como candidato principal. Em paralelo, é aplicado um esquema de estabilidade temporal, que conta quantos frames consecutivos apresentam movimento válido (framesComMovimento) e quantos aparecem sem movimento (framesSemMovimento). Só quando o número de frames com movimento ultrapassa um limite pré-definido (LIMITE_FRAMES) o sistema considera que há movimento real e persistente, reduzindo falsos positivos.</p>
+
+<p style="text-align: justify;">Quando o movimento real é confirmado, o programa desenha um retângulo azul ao redor do objeto, exibe a mensagem “MOVIMENTO DETECTADO!” e mostra uma barra de progresso na base da imagem, indicando o tempo de movimento contínuo. Caso esse movimento persista por pelo menos 1 segundo, o SPV salva automaticamente o frame completo da webcam em um arquivo JPEG com timestamp no nome, emite um beep sonoro no terminal e registra a mensagem de log informando o arquivo salvo.</p>
+
+<p style="text-align: justify;">Na sequência, ocorre a integração com o Telegram: o código utiliza funções específicas (enviarMensagemTelegram e enviarFotoTelegram) que empregam a biblioteca cURL para fazer requisições HTTP à API do Telegram. Assim, o sistema envia uma mensagem de texto (“Movimento detectado!”) e, em seguida, envia também a imagem salva para o chat configurado por meio do botToken e do chatID. Dessa forma, além do alerta visual na tela e do aviso sonoro local, o SPV gera uma notificação remota com evidência visual do evento, permitindo monitoramento em tempo real e registro dos incidentes.</p>
 
         <h4>Lista dos arquivos</h4>
         <ul>
@@ -719,9 +746,6 @@ OPENCV. Optical Flow – Lucas–Kanade method. OpenCV Documentation, release 4.
 FERNÁNDEZ, A. et al. Driver Distraction Using Visual-Based Sensors and Algorithms. Sensors, v. 16, n. 11, 2016. </li>
         </ul>
 
-
-<p>Use this token to access the HTTP API:
-8434266352:AAF0iZzvc9eTDMM2wwB-I8os121p3bC3vGI</p>
 
         <h3>Anexo</h3>
         <p><!-- códigos completos/links --></p>
