@@ -606,16 +606,71 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
         <p><strong>Data:</strong> 24/11/2025</p>
 
         <h3>Introdução</h3>
-        <ul>
-          <li><strong>Objetivos do trabalho</strong> — <!-- objetivos --></li>
-        </ul>
+        
+         <h4>Objetivos</h3>
 
-        <h3>Cenário de Aplicação (CA)</h3>
-        <p><!-- contexto --></p>
+        <p style="text-align: justify;">
+          O objetivo deste projeto é desenvolver um Sistema de Processamento de Vídeo (SPV) capaz de identificar, em tempo real, comportamentos de distração do motorista relacionados ao uso de telefone celular.
+          O sistema, implementado em C++ com a biblioteca OpenCV, analisa imagens capturadas pela câmera frontal para detectar gestos característicos, como segurar o celular, olhar para baixo ou posicionar as mãos de forma suspeita.
+        </p>
 
-        <h3>Fundamentação teórica</h3>
-        <p><!-- teorias e referências --></p>
+        <p style="text-align: justify;">
+          Ao reconhecer essas ações, o SPV emite alertas sonoros e visuais, incentivando o condutor a retomar a atenção na via.
+          Além disso, o projeto aplica conteúdos teóricos da disciplina, incluindo filtragem espacial, subtração de fundo, equalização de histograma, processamento de cores e detecção de objetos, demonstrando integração entre teoria e prática com relevância social.
+        </p>
 
+        <h4>Cenário de Aplicação</h3>
+
+        <p style="text-align: justify;">
+          A distração ao volante é uma das principais causas de acidentes de trânsito no mundo, especialmente devido ao uso crescente de celulares durante a condução.
+          No Brasil, entre 2023 e 2024, mais de 50 mil motoristas foram autuados por uso de celular ao volante — uma média de 150 flagrantes por dia.
+          Em escala global, estima-se que 12% dos acidentes fatais envolvem algum tipo de distração, sendo o uso de telefone celular o fator predominante.
+          Nos Estados Unidos, por exemplo, 3.275 pessoas morreram em 2023 em acidentes relacionados à distração.
+        </p>
+
+        <p style="text-align: justify;">
+          Entrevistas empáticas realizadas com motoristas e acompanhantes reforçam esse cenário: a distração por celular é frequente, reconhecida como perigosa e associada à redução do tempo de reação.
+          Os entrevistados apontam a necessidade de um sistema de alerta rápido, não intrusivo e que preserve a privacidade do usuário.
+        </p>
+
+        <p style="text-align: justify;">
+          Diante desse panorama, o SPV proposto apresenta um cenário de aplicação altamente relevante:
+          auxiliar motoristas a manter a atenção enquanto dirigem, reduzindo riscos e contribuindo para a segurança no trânsito.
+        </p>
+
+        <h4>Fundamentação Teórica</h3>
+        <p style="text-align: justify;">
+          O desenvolvimento do sistema baseia-se em conceitos fundamentais de Processamento Digital de Imagens e Visão Computacional, permitindo extrair informações significativas do vídeo capturado em tempo real.
+          Entre os principais conceitos utilizados, destacam-se:
+        </p>
+
+        <h4>• Filtragem Espacial</h3>
+        <p style="text-align: justify;">
+          A aplicação de filtros permite reduzir ruídos, realçar contornos e melhorar a qualidade da imagem antes da etapa de detecção.
+          Técnicas como filtros passa-baixa, passa-alta e suavização são essenciais para preparar os quadros para análise.
+        </p>
+
+        <h4>•  Processamento de Cores</h3>
+        <p style="text-align: justify;">
+          Transformações de cores entre diferentes espaços (BGR, HSV, YCrCb) ajudam a destacar regiões de interesse, como pele das mãos e rosto, facilitando a identificação de gestos relacionados ao uso do celular.
+        </p>
+
+        <h4>•  Equalização de Histograma</h3>
+        <p style="text-align: justify%;">
+          A equalização melhora o contraste da imagem, principalmente em ambientes com variação de iluminação — condição comum dentro de veículos — aumentando a precisão da detecção.
+        </p>
+
+        <h4>•  Subtração de Fundo</h3>
+        <p style="text-align: justify;">
+          Métodos de background subtraction são úteis para isolar movimentos relevantes, como levantar a mão ou aproximá-la do rosto.
+          Isso ajuda a distinguir ações comuns de comportamentos associados ao uso do celular.
+        </p>
+
+          <h4>•  Detecção de Objetos e Gestos</h3>
+          <p style="text-align: justify;">
+            A análise das regiões segmentadas permite identificar padrões típicos de uso do celular.
+            O sistema monitora poses e movimentos que sugerem a presença do aparelho ou a atenção desviada para baixo.
+          </p>
         <h3>Materiais e métodos</h3>
 
         <h4>Modelagem Funcional do SPV (MF)</h4>
@@ -642,7 +697,7 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
         <h3>Laboratório Experimental</h3>
         <h4>Roteiro do LEx</h4>
         <p><!-- passos e condições --></p>
-
+ 
         <h4>Análise dos Resultados do TC</h4>
         <ul>
           <li><strong>Experimentos realizados</strong> — ...</li>
@@ -656,8 +711,17 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
 
         <h3>Referências Bibliográficas</h3>
         <ul>
-          <li><!-- AUTOR. Título. Editora/Conferência, ano. DOI/URL. --></li>
+          <li>Documentação oficial do OpenCV – background subtraction (BackgroundSubtractorMOG2, erosão/dilatação, máscara de movimento)
+OPENCV. Background Subtraction. OpenCV Documentation, release 4.x. </li>
+          <li>Documentação oficial do OpenCV – optical flow Lucas-Kanade (calcOpticalFlowPyrLK)
+OPENCV. Optical Flow – Lucas–Kanade method. OpenCV Documentation, release 4.x.</li>
+          <li>Revisão de sistemas de detecção de distração baseados em sensores visuais (câmera)
+FERNÁNDEZ, A. et al. Driver Distraction Using Visual-Based Sensors and Algorithms. Sensors, v. 16, n. 11, 2016. </li>
         </ul>
+
+
+<p>Use this token to access the HTTP API:
+8434266352:AAF0iZzvc9eTDMM2wwB-I8os121p3bC3vGI</p>
 
         <h3>Anexo</h3>
         <p><!-- códigos completos/links --></p>
