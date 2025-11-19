@@ -15,14 +15,37 @@
  *      $ ./spv
  ******************************************************/
 
+# Defina a versão mínima do CMake
 cmake_minimum_required(VERSION 3.10)
-project(spv)
 
+# Nome do projeto
+project(SPV_Sistema_de_Processamento_Visual)
+
+# Defina o padrão do C++ para C++11 (ou versão mais recente, se necessário)
 set(CMAKE_CXX_STANDARD 11)
 
+# Encontre o pacote do OpenCV
 find_package(OpenCV REQUIRED)
-include_directories(${OpenCV_INCLUDE_DIRS})
 
-add_executable(spv spv.cpp)
-target_link_libraries(spv ${OpenCV_LIBS})
+# Encontre o pacote libcurl
+find_package(CURL REQUIRED)
+
+# Adicione os arquivos de código-fonte
+set(SOURCE_FILES
+    main.cpp
+)
+
+# Adicione o executável
+add_executable(spv ${SOURCE_FILES})
+
+# Linkando as bibliotecas necessárias
+target_link_libraries(spv ${OpenCV_LIBS} ${CURL_LIBRARIES})
+
+# Incluindo diretórios para cabeçalhos
+include_directories(${OpenCV_INCLUDE_DIRS} ${CURL_INCLUDE_DIRS})
+
+# Caso você queira um diretório de compilação separado (opcional)
+set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
