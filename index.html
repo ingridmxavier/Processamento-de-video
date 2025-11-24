@@ -711,14 +711,6 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
 
 <p style="text-align: justify;">Na sequência, ocorre a integração com o Telegram: o código utiliza funções específicas (enviarMensagemTelegram e enviarFotoTelegram) que empregam a biblioteca cURL para fazer requisições HTTP à API do Telegram. Assim, o sistema envia uma mensagem de texto (“Movimento detectado!”) e, em seguida, envia também a imagem salva para o chat configurado por meio do botToken e do chatID. Dessa forma, além do alerta visual na tela e do aviso sonoro local, o SPV gera uma notificação remota com evidência visual do evento, permitindo monitoramento em tempo real e registro dos incidentes.</p>
 
-        <h4>Lista dos arquivos</h4>
-        <ul>
-          <li><strong>Códigos-fonte</strong>: <!-- ex.: /src --></li>
-          <li><strong>Imagens</strong>: <!-- ex.: /data/images --></li>
-          <li><strong>Vídeos</strong>: <!-- ex.: /data/videos --></li>
-          <li><strong>Arquivos auxiliares</strong>: <!-- pesos/configs --></li>
-        </ul>
-
         <h4>Análise técnica</h4>
         <ul>
           <li><strong>Métricas objetivas</strong> — precisão, sensibilidade...</li>
@@ -727,19 +719,163 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
         </ul>
 
         <h3>Laboratório Experimental</h3>
-        <h4>Roteiro do LEx</h4>
-        <p><!-- passos e condições --></p>
- 
-        <h4>Análise dos Resultados do TC</h4>
-        <ul>
-          <li><strong>Experimentos realizados</strong> — ...</li>
-          <li><strong>Critérios de avaliação</strong> — ...</li>
-          <li><strong>Médias dos alunos</strong> — ...</li>
-          <li><strong>Opiniões subjetivas</strong> — ...</li>
-        </ul>
+         <h4>Introdução</h4>
+<p style="text-align: justify; margin-bottom: 0;">
+    O Sistema de Processamento Visual RoadWatch foi desenvolvido com o objetivo de detectar o uso indevido de celular durante a condução, 
+    utilizando técnicas de visão computacional em tempo real. Por meio de uma webcam posicionada em frente ao condutor, o sistema realiza o rastreamento 
+    de pontos-chave do corpo (mãos, rosto e ombros) e aplica regras de decisão que identificam comportamentos suspeitos, como segurar o celular ou olhar 
+    para baixo. </p>
+
+        <h4>Objetivo</h4>
+        <p>Preparar e executar o Teste de Campo (TC) do Sistema de Processamento Visual RoadWatch, simulando situações reais de uso em tempo real com webcam, operadas por um usuário leigo (pessoas externas à equipe), para validar a funcionalidade, usabilidade e clareza do sistema de detecção de uso indevido de celular durante a condução.</p>
+
+  
+ <h4>Casos de Aplicação </h4>
+A equipe desenvolveu cenários de teste que representam situações reais de um condutor:
+<ul style="margin: 0 0 12px 1.2rem; padding-left: 1rem; line-height: 1.5;">
+    <li>Condutor sem uso de celular (condição normal).</li>
+    <li>Condutor segurando o celular na mão direita.</li>
+    <li>Condutor com o celular próximo ao ouvido.</li>
+    <li>Condutor olhando para baixo (simulando digitação).</li>
+  </ul>
+Esses testes serão executados em tempo real com uma webcam, no ambiente de laboratório ou doméstico, considerando iluminação ambiente e posicionamento da câmera semelhantes a um painel de veículo.
+
+ <h4>Roteiro do Laboratório Experimental</h4>
+
+    <iframe 
+      src="imagens/InstalaçãoOpenCV.txt"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Guia para instalar o OpenCV">
+    </iframe>
+    <iframe 
+      src="imagens/InstrucoesTeste.txt"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Instruções de como rodar o código .cpp no terminal">
+    </iframe>
+
+
+        <h4>Procedimento experimental</h4>
+        <p><!-- instruções detalhadas --></p>
+
+ <p style="text-align: justify;">
+    O procedimento experimental tem como objetivo avaliar o funcionamento do sistema RoadWatch em condições reais de uso,
+    permitindo que um usuário leigo opere o sistema e observe seu comportamento em diferentes cenários. A seguir são apresentadas as instruções
+    detalhadas para a execução do experimento:
+  </p>
+
+  <ol style="padding-left: 1.2rem; line-height: 1.6;">
+    <li><strong>Preparação do ambiente:</strong> 
+      Posicione o computador ou notebook em local bem iluminado, simulando o interior de um veículo. 
+      A webcam deve estar fixa de modo a enquadrar o rosto e os ombros do participante, 
+      semelhante à posição de uma câmera instalada no painel de um carro.
+
+    <li><strong>Inicialização do sistema:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Instale o OpenCV.</li>
+        <li>Rode o arquivo .cpp de acordo com as instruções anteriores.</li>
+        <li>Verifique se o vídeo ao vivo do condutor está sendo exibido corretamente.</li>
+        </li>Aperte "i" para iniciar, então o sistema detecta o objeto ou não e aparece na tela "Movimento detectado", senão não aparece nenhuma mensagem.</li>
+        </li>Aperte "q" para sair. As imagens são salvas automomaticamente</li> 
+      </ul>
+    </li>
+
+ <video controls style="width: 100%; max-width: 720px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.15);">
+    <source src="imagens/teste.webm" type="video/mp4">
+    Seu navegador não suporta a reprodução de vídeos.
+  </video>
+  
+  <figcaption style="margin-top: 8px; font-size: 0.95rem; color: #000;">
+    <em>Vídeo demonstrativo do funcionamento do sistema RoadWatch em tempo real.</em>
+  </figcaption>
+
+    <li><strong>Execução dos cenários de teste:</strong>
+      <p style="margin-top: 6px; text-align: justify;">O participante deverá realizar as quatro situações definidas nos Casos de Aplicação, observando as mensagens exibidas na tela e as notificações enviadas via Telegram:</p>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li><strong>Cenário 1:</strong> Condutor sem uso de celular (situação normal).</li>
+        <li><strong>Cenário 2:</strong> Condutor segurando o celular com a mão direita próxima ao rosto.</li>
+        <li><strong>Cenário 3:</strong> Condutor com o celular junto ao ouvido (simulando uma ligação).</li>
+        <li><strong>Cenário 4:</strong> Condutor olhando para baixo, como se estivesse digitando.</li>
+      </ul>
+    </li>
+
+    <li><strong>Observação dos resultados:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Durante a execução, observe se o sistema exibe corretamente o status “Uso de celular detectado” ou “Condutor normal”.</li>
+        <li>Confirme se as mensagens de alerta são enviadas automaticamente pelo bot do Telegram.</li>
+        <li>Anote possíveis <em>falsos positivos</em> (alerta sem uso real de celular) ou <em>falhas de detecção</em> (não reconhecimento do uso).</li>
+      </ul>
+    </li>
+
+    <li><strong>Encerramento do teste:</strong>
+      <ul style="margin-top: 6px; line-height: 1.5;">
+        <li>Feche o programa após concluir os quatro cenários.</li>
+        <li>Preencha o questionário de avaliação (objetivo e subjetivo) fornecido pela equipe.</li>
+        <li>Informe se houve qualquer dificuldade de uso ou problema técnico.</li>
+      </ul>
+    </li>
+  </ol>
+
+<h4>Questionário de avaliação do usuário</h4>
+
+<figure>
+  <img src="imagens/ques1.png" >
+  <figcaption>Print do Questionário proposto.</figcaption>
+</figure>
+
+<figure>
+  <img src="imagens/ques2.png" >
+  <figcaption>Print do Questionário proposto.</figcaption>
+</figure>
+
+    <h3>Enquete Subjetiva de Opinião (ESO)</h3>
+<figure>
+  <img src="imagens/enquete1.png" >
+  <figcaption>Print da Enquente proposta.</figcaption>
+</figure>
+
+<figure>
+  <img src="imagens/enquete2.png" >
+  <figcaption>Print da Enquete proposta.</figcaption>
+</figure>
+
+
+ <h3>Análise das Respostas do Questionário e da Enquete </h3>
+<p>Foram analisadas as respostas de três participantes: Beatriz, Ana Carolina e Eduardo. O objetivo era verificar:</p>
+<p>(i) Se o usuário entendeu o assunto do tema através do experimento.</p>
+<p>(ii) Se obteve os resultados esperados.</p>
+<p>(iii) Se entendeu a aplicação do sistema RoadWatch.</p>
+
+<p>Todos os participantes avaliaram a interface como nota 5 (ótimo), o que mostra que a apresentação do sistema foi clara e intuitiva.</p>
+<p>Nas respostas abertas, todos afirmaram que conseguiram rodar o experimento, entender o código e seguir as instruções facilmente. Não houve relatos de confusão ou dúvida sobre como o sistema funciona.</p>
+<p>As notas atribuídas à detecção foram 4, 5 e 5, demonstrando que:</p>
+<p>O sistema funcionou corretamente na maior parte dos testes.</p>
+<p>Os usuários perceberam coerência entre sua ação (usar celular) e a resposta do sistema.</p>
+<p>Não houve falhas graves ou comportamento inesperado.</p>
+<p>Nas respostas sobre dificuldades, duas pessoas responderam “Não”, e uma disse “Não sei”, indicando ausência de problemas relevantes.</p>
+<p>Os usuários demonstraram entender completamente para que o RoadWatch serve: detectar o uso de celular durante a condução.</p>
+<p>Todos os três critérios foram atendidos pelos usuários: entendimento do tema, obtenção dos resultados e compreensão da aplicação do sistema.</p>
+
+<h4>Download da planilha de respostas</h4>
+<p>
+  <a href="imagens/RespostasRoadWatch.xlsx" download>
+    Clique aqui para baixar a planilha (.xlsx)
+  </a>
+</p>
 
         <h3>Conclusões</h3>
-        <p><!-- objetivos atingidos; pontos positivos/negativos --></p>
+        <p style="text-align:center;">O projeto RoadWatch – Sistema de Processamento de Vídeo (SPV) consolidou, de forma integrada, os principais conteúdos estudados na disciplina, demonstrando como conceitos de processamento digital de imagens, visão computacional e análise temporal podem ser aplicados para resolver um problema real e socialmente relevante: a distração do motorista pelo uso do celular.</p>
+
+ <p style="text-align:center;">Ao longo do desenvolvimento, a equipe implementou um pipeline completo em C++ e OpenCV, estruturado em módulos independentes e funcionais. A captura de vídeo, o pré-processamento com filtragem e correção de iluminação, a segmentação por subtração de fundo, a detecção de movimento e a análise temporal permitiram construir um sistema robusto, capaz de diferenciar ações rápidas e ruídos visuais de comportamentos consistentes. A integração com a API do Telegram, utilizando a biblioteca cURL, ampliou o impacto da solução ao permitir alertas remotos com imagens reais do evento detectado, aproximando o sistema de um cenário de aplicação concreto.</p>
+
+ <p style="text-align:center;">Durante os testes, ficou evidente que a abordagem baseada em detecção de movimento estabilizada por múltiplos frames reduz drasticamente falsos positivos, mantendo o sistema responsivo mesmo em condições de iluminação variável — um desafio típico em ambientes internos de veículos. Além disso, a criação de mecanismos de persistência temporal (frames consecutivos com movimento) tornou a detecção mais confiável, alinhada às boas práticas de visão computacional.</p>
+
+ <p style="text-align:center;">O RoadWatch atingiu os objetivos propostos: identificar sinais de distração associados ao uso de celular e emitir alertas imediatos ao usuário. O sistema demonstrou capacidade de reconhecer gestos suspeitos, registrar eventos, notificar o motorista e gerar evidências para análises posteriores. A solução possui potencial de evolução futura, incluindo modelos supervisionados, reconhecimento de poses com MediaPipe e fusão com sensores do veículo, ampliando sua precisão e aplicabilidade.</p>
+
+ <p style="text-align:center;">Em síntese, o projeto proporcionou à equipe uma experiência prática completa, unindo teoria, implementação e validação. O RoadWatch se destaca como uma ferramenta tecnicamente sólida e socialmente impactante, reforçando a importância do uso de tecnologias de visão computacional para promover segurança no trânsito e mitigar riscos relacionados à distração do motorista.</p>
 
         <h3>Referências Bibliográficas</h3>
         <ul>
@@ -751,9 +887,16 @@ OPENCV. Optical Flow – Lucas–Kanade method. OpenCV Documentation, release 4.
 FERNÁNDEZ, A. et al. Driver Distraction Using Visual-Based Sensors and Algorithms. Sensors, v. 16, n. 11, 2016. </li>
         </ul>
 
-
         <h3>Anexo</h3>
         <p><!-- códigos completos/links --></p>
+        <h4>Lista dos arquivos</h4>
+        <ul>
+          <li><strong>Códigos-fonte</strong>: <!-- ex.: /src --></li>
+          <li><strong>Imagens</strong>: <!-- ex.: /data/images --></li>
+          <li><strong>Vídeos</strong>: <!-- ex.: /data/videos --></li>
+          <li><strong>Arquivos auxiliares</strong>: <!-- pesos/configs --></li>
+        </ul>
+
       </div>
     </details>
 
