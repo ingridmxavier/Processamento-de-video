@@ -710,8 +710,8 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
 <p style="text-align: justify;">Quando o movimento real é confirmado, o programa desenha um retângulo azul ao redor do objeto, exibe a mensagem “MOVIMENTO DETECTADO!” e mostra uma barra de progresso na base da imagem, indicando o tempo de movimento contínuo. Caso esse movimento persista por pelo menos 1 segundo, o SPV salva automaticamente o frame completo da webcam em um arquivo JPEG com timestamp no nome, emite um beep sonoro no terminal e registra a mensagem de log informando o arquivo salvo.</p>
 
 <p style="text-align: justify;">Na sequência, ocorre a integração com o Telegram: o código utiliza funções específicas (enviarMensagemTelegram e enviarFotoTelegram) que empregam a biblioteca cURL para fazer requisições HTTP à API do Telegram. Assim, o sistema envia uma mensagem de texto (“Movimento detectado!”) e, em seguida, envia também a imagem salva para o chat configurado por meio do botToken e do chatID. Dessa forma, além do alerta visual na tela e do aviso sonoro local, o SPV gera uma notificação remota com evidência visual do evento, permitindo monitoramento em tempo real e registro dos incidentes.</p>
-        
-<h3>Análise Técnica</h3>
+
+   <h3>Análise Técnica</h3>
 <ul>
     <li><strong>Métricas Objetivas</strong>
         <p>As métricas objetivas são usadas para avaliar a eficácia do sistema em termos de detecção e precisão. Aqui estão as métricas mais relevantes para avaliar a performance do SPV:</p>
@@ -928,15 +928,15 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
 </p>
 
         <h3>Conclusões</h3>
-        <p style="text-align:center;">O projeto RoadWatch – Sistema de Processamento de Vídeo (SPV) consolidou, de forma integrada, os principais conteúdos estudados na disciplina, demonstrando como conceitos de processamento digital de imagens, visão computacional e análise temporal podem ser aplicados para resolver um problema real e socialmente relevante: a distração do motorista pelo uso do celular.</p>
+        <p style="text-align:justify;">O projeto RoadWatch – Sistema de Processamento de Vídeo (SPV) consolidou, de forma integrada, os principais conteúdos estudados na disciplina, demonstrando como conceitos de processamento digital de imagens, visão computacional e análise temporal podem ser aplicados para resolver um problema real e socialmente relevante: a distração do motorista pelo uso do celular.</p>
 
- <p style="text-align:center;">Ao longo do desenvolvimento, a equipe implementou um pipeline completo em C++ e OpenCV, estruturado em módulos independentes e funcionais. A captura de vídeo, o pré-processamento com filtragem e correção de iluminação, a segmentação por subtração de fundo, a detecção de movimento e a análise temporal permitiram construir um sistema robusto, capaz de diferenciar ações rápidas e ruídos visuais de comportamentos consistentes. A integração com a API do Telegram, utilizando a biblioteca cURL, ampliou o impacto da solução ao permitir alertas remotos com imagens reais do evento detectado, aproximando o sistema de um cenário de aplicação concreto.</p>
+ <p style="text-align:justify;">Ao longo do desenvolvimento, a equipe implementou um pipeline completo em C++ e OpenCV, estruturado em módulos independentes e funcionais. A captura de vídeo, o pré-processamento com filtragem e correção de iluminação, a segmentação por subtração de fundo, a detecção de movimento e a análise temporal permitiram construir um sistema robusto, capaz de diferenciar ações rápidas e ruídos visuais de comportamentos consistentes. A integração com a API do Telegram, utilizando a biblioteca cURL, ampliou o impacto da solução ao permitir alertas remotos com imagens reais do evento detectado, aproximando o sistema de um cenário de aplicação concreto.</p>
 
- <p style="text-align:center;">Durante os testes, ficou evidente que a abordagem baseada em detecção de movimento estabilizada por múltiplos frames reduz drasticamente falsos positivos, mantendo o sistema responsivo mesmo em condições de iluminação variável — um desafio típico em ambientes internos de veículos. Além disso, a criação de mecanismos de persistência temporal (frames consecutivos com movimento) tornou a detecção mais confiável, alinhada às boas práticas de visão computacional.</p>
+ <p style="text-align:justify;">Durante os testes, ficou evidente que a abordagem baseada em detecção de movimento estabilizada por múltiplos frames reduz drasticamente falsos positivos, mantendo o sistema responsivo mesmo em condições de iluminação variável — um desafio típico em ambientes internos de veículos. Além disso, a criação de mecanismos de persistência temporal (frames consecutivos com movimento) tornou a detecção mais confiável, alinhada às boas práticas de visão computacional.</p>
 
- <p style="text-align:center;">O RoadWatch atingiu os objetivos propostos: identificar sinais de distração associados ao uso de celular e emitir alertas imediatos ao usuário. O sistema demonstrou capacidade de reconhecer gestos suspeitos, registrar eventos, notificar o motorista e gerar evidências para análises posteriores. A solução possui potencial de evolução futura, incluindo modelos supervisionados, reconhecimento de poses com MediaPipe e fusão com sensores do veículo, ampliando sua precisão e aplicabilidade.</p>
+ <p style="text-align:justify;">O RoadWatch atingiu os objetivos propostos: identificar sinais de distração associados ao uso de celular e emitir alertas imediatos ao usuário. O sistema demonstrou capacidade de reconhecer gestos suspeitos, registrar eventos, notificar o motorista e gerar evidências para análises posteriores. A solução possui potencial de evolução futura, incluindo modelos supervisionados, reconhecimento de poses com MediaPipe e fusão com sensores do veículo, ampliando sua precisão e aplicabilidade.</p>
 
- <p style="text-align:center;">Em síntese, o projeto proporcionou à equipe uma experiência prática completa, unindo teoria, implementação e validação. O RoadWatch se destaca como uma ferramenta tecnicamente sólida e socialmente impactante, reforçando a importância do uso de tecnologias de visão computacional para promover segurança no trânsito e mitigar riscos relacionados à distração do motorista.</p>
+ <p style="text-align:justify;">Em síntese, o projeto proporcionou à equipe uma experiência prática completa, unindo teoria, implementação e validação. O RoadWatch se destaca como uma ferramenta tecnicamente sólida e socialmente impactante, reforçando a importância do uso de tecnologias de visão computacional para promover segurança no trânsito e mitigar riscos relacionados à distração do motorista.</p>
 
         <h3>Referências Bibliográficas</h3>
         <ul>
@@ -949,12 +949,72 @@ FERNÁNDEZ, A. et al. Driver Distraction Using Visual-Based Sensors and Algorith
         </ul>
 
         <h3>Anexo</h3>
-        <p><!-- códigos completos/links --></p>
-        <h4>Lista dos arquivos</h4>
         <ul>
-          <li><strong>Códigos-fonte</strong>: <!-- ex.: /src --></li>
+          <li><strong>Códigos-fonte Laboratório Experimental</strong></li>
+<iframe 
+      src="imagens/Código.txt"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código-fonte Código.txt">
+    </iframe>
+ <iframe 
+      src="imagens/CMakeLists.txt"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código CMakeLists do LEX">
+    </iframe>
+    <iframe 
+      src="imagens/spv.cpp"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código Executável Spv.cpp do LEX">
+ </iframe>
+ <iframe 
+      src="imagens/DisplayImage.cpp"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código DisplayImage.cpp do LEX">
+ </iframe>
+
+ <li><strong>Códigos-fonte Telegram</strong></li>
+ <iframe 
+      src="imagens/main.cpp"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código main.cpp do Telegram">
+ </iframe>
+<iframe 
+      src="imagens/CMakeLists(1).txt"
+      width="70%"
+      height="400px"
+      style="border: 1px solid #ccc; border-radius: 8px; box-shadow: 0 0 6px rgba(0,0,0,0.1); background-color: #fafafa; margin-left: 100px;"
+      title="Código CMakeLists(1).txt do Telegram">
+  </iframe>
+
           <li><strong>Imagens</strong>: <!-- ex.: /data/images --></li>
-          <li><strong>Vídeos</strong>: <!-- ex.: /data/videos --></li>
+
+          <li><strong>Vídeos do Teste de Campo </strong></li>
+<figure style="text-align:center;">
+  <video controls width="100%" style="max-width: 700px; border-radius: 12px;">
+    <source src="imagens/teste-spv.webm" type="video/mp4">
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+  <figcaption>Figura – Teste de Campo do sistema RoadWatch com Telegram.</figcaption>
+</figure>
+
+<figure style="text-align:center;">
+  <video controls width="100%" style="max-width: 700px; border-radius: 12px;">
+    <source src="imagens/teste-spv2.webm" type="video/mp4">
+    Seu navegador não suporta o elemento de vídeo.
+  </video>
+  <figcaption>Figura – Teste de Campo do sistema RoadWatch com Telegram.</figcaption>
+</figure>
+
           <li><strong>Arquivos auxiliares</strong>: <!-- pesos/configs --></li>
         </ul>
 
