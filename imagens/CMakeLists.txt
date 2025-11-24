@@ -1,51 +1,9 @@
-/******************************************************
- * Nome do Programa: CMakeLists
- * Integrantes da Equipe RoadWatch:
- *  - Fernanda Ayumi - RA: 11202321172
- *  - Ingrid Xavier - RA: 11202130019
- *  - Gabriel Rothen - RA: 11202321586
- *
- * Data: 2025
- * Descrição: Sistema de detecção de movimento com OpenCV
- * Execução no Ubuntu (terminal):
- *      $ mkdir build
- *      $ cd build
- *      $ cmake ..
- *      $ make
- *      $ ./spv
- ******************************************************/
-
-# Defina a versão mínima do CMake
 cmake_minimum_required(VERSION 3.10)
+project(SPV_ROADWATCH)
 
-# Nome do projeto
-project(SPV_Sistema_de_Processamento_Visual)
-
-# Defina o padrão do C++ para C++11 (ou versão mais recente, se necessário)
-set(CMAKE_CXX_STANDARD 11)
-
-# Encontre o pacote do OpenCV
+set(CMAKE_CXX_STANDARD 17)
 find_package(OpenCV REQUIRED)
 
-# Encontre o pacote libcurl
-find_package(CURL REQUIRED)
-
-# Adicione os arquivos de código-fonte
-set(SOURCE_FILES
-    main.cpp
-)
-
-# Adicione o executável
-add_executable(spv ${SOURCE_FILES})
-
-# Linkando as bibliotecas necessárias
-target_link_libraries(spv ${OpenCV_LIBS} ${CURL_LIBRARIES})
-
-# Incluindo diretórios para cabeçalhos
-include_directories(${OpenCV_INCLUDE_DIRS} ${CURL_INCLUDE_DIRS})
-
-# Caso você queira um diretório de compilação separado (opcional)
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
+add_executable(spv spv.cpp)
+target_link_libraries(spv ${OpenCV_LIBS})
 
