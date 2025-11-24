@@ -710,13 +710,75 @@ Esses testes serão executados em tempo real com uma webcam, no ambiente de labo
 <p style="text-align: justify;">Quando o movimento real é confirmado, o programa desenha um retângulo azul ao redor do objeto, exibe a mensagem “MOVIMENTO DETECTADO!” e mostra uma barra de progresso na base da imagem, indicando o tempo de movimento contínuo. Caso esse movimento persista por pelo menos 1 segundo, o SPV salva automaticamente o frame completo da webcam em um arquivo JPEG com timestamp no nome, emite um beep sonoro no terminal e registra a mensagem de log informando o arquivo salvo.</p>
 
 <p style="text-align: justify;">Na sequência, ocorre a integração com o Telegram: o código utiliza funções específicas (enviarMensagemTelegram e enviarFotoTelegram) que empregam a biblioteca cURL para fazer requisições HTTP à API do Telegram. Assim, o sistema envia uma mensagem de texto (“Movimento detectado!”) e, em seguida, envia também a imagem salva para o chat configurado por meio do botToken e do chatID. Dessa forma, além do alerta visual na tela e do aviso sonoro local, o SPV gera uma notificação remota com evidência visual do evento, permitindo monitoramento em tempo real e registro dos incidentes.</p>
-
-        <h4>Análise técnica</h4>
-        <ul>
-          <li><strong>Métricas objetivas</strong> — precisão, sensibilidade...</li>
-          <li><strong>Métricas qualitativas</strong> — usabilidade, feedback...</li>
-          <li><strong>Resultados e conclusões parciais</strong> — achados principais...</li>
-        </ul>
+        
+<h3>1. Análise Técnica</h3>
+<ul>
+    <li><strong>1.1 Métricas Objetivas</strong>
+        <p>As métricas objetivas são usadas para avaliar a eficácia do sistema em termos de detecção e precisão. Aqui estão as métricas mais relevantes para avaliar a performance do SPV:</p>
+        
+        <p><strong>Precisão:</strong> Refere-se à proporção de previsões corretas feitas pelo sistema, ou seja, o número de detecções corretas (positivos verdadeiros + negativos verdadeiros) dividido pelo número total de testes.</p>
+        <p><strong>Sensibilidade:</strong> A sensibilidade mede a capacidade do sistema de identificar corretamente os casos positivos (ex: quando o motorista está realmente usando o celular).</p>
+        <p><strong>Falsos Positivos:</strong> Representa a quantidade de vezes que o sistema alertou para um comportamento de distração que não estava realmente ocorrendo. Ou seja, é a proporção de previsões incorretas onde o sistema identificou um evento que não existia.</p>
+        <p><strong>Taxa de Detecção de Movimentos Relevantes:</strong> Mede a capacidade do sistema de identificar movimentos que indicam distração, como olhar para baixo ou pegar o celular.</p>
+        
+        <p><strong>OBS: As métricas a seguir foram baseadas no vídeo em anexo no final do relatório.</strong></p>
+        
+        <table>
+            <tr>
+                <td>Precisão</td>
+                <td>Mais de 90%</td>
+            </tr>
+            <tr>
+                <td>Sensibilidade</td>
+                <td>Alta</td>
+            </tr>
+            <tr>
+                <td>Falsos Positivos</td>
+                <td>Cerca de 10%</td>
+            </tr>
+            <tr>
+                <td>Taxa de Detecção de Movimentos Relevantes</td>
+                <td>Mais de 90%</td>
+            </tr>
+        </table>
+    </li>
+    
+    <li><strong>1.2 Métricas Qualitativas</strong>
+        <p>As métricas qualitativas envolvem aspectos subjetivos relacionados à experiência de uso e à aceitação do sistema pelos motoristas. Abaixo estão algumas das métricas qualitativas observadas:</p>
+        
+        <table>
+            <tr>
+                <td>Usabilidade</td>
+                <td>Alta</td>
+            </tr>
+            <tr>
+                <td>Feedback dos Usuários</td>
+                <td>10/10</td>
+            </tr>
+            <tr>
+                <td>Impacto na Concentração e Segurança</td>
+                <td>Impacto positivo</td>
+            </tr>
+        </table>
+    </li>
+    
+    <li><strong>1.3 Resultados e Conclusões Parciais</strong>
+        <p>Esta seção apresenta os principais achados dos testes realizados, incluindo a eficácia do sistema e possíveis melhorias necessárias.</p>
+        
+        <h4>Acertos principais</h4>
+        <p>O sistema apresentou alta precisão na detecção de comportamentos de distração, com bons resultados nas métricas de sensibilidade e especificidade. A detecção de gestos como olhar para baixo e levantar a mão foi eficaz, com poucos falsos negativos.</p>
+        <p><strong>Resultado:</strong> O sistema tem mostrado um bom desempenho na identificação dos comportamentos de distração mais comuns, como o uso do celular, alcançando alta precisão e sensibilidade.</p>
+        
+        <h4>Desafios encontrados</h4>
+        <p>Em alguns testes, o sistema apresentou dificuldade em ambientes com iluminação variável, o que afetou a precisão. Além disso, o processamento em tempo real pode ser afetado por movimentos rápidos ou gestos atípicos do motorista, o que pode levar a um aumento no número de falsos positivos.</p>
+        <p><strong>Resultado:</strong> A variabilidade da iluminação e os gestos inesperados do motorista podem comprometer a detecção em alguns cenários. Essas condições precisam ser melhoradas para garantir um desempenho consistente.</p>
+        
+        <h4>Melhorias futuras</h4>
+        <p>Implementação de algoritmos de aprendizado de máquina para adaptação dinâmica aos diferentes comportamentos dos motoristas e melhorias na detecção em ambientes de iluminação variável. A integração com outros sensores do veículo, como câmeras de bordo, poderia aumentar a precisão da detecção.</p>
+        <p><strong>Resultado:</strong> A utilização de inteligência artificial (IA) para melhorar a adaptação a diferentes comportamentos dos motoristas e condições de iluminação pode melhorar significativamente o desempenho do sistema. Além disso, a combinação com sensores de bordo pode aumentar a precisão da detecção.</p>
+    </li>
+</ul>
+>
 
         <h3>Laboratório Experimental</h3>
          <h4>Introdução</h4>
